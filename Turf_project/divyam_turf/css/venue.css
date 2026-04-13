@@ -1,0 +1,337 @@
+/* ── VENUE DETAIL PAGE ── */
+.breadcrumb {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+}
+.breadcrumb-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.breadcrumb-inner a { color: var(--green); }
+.breadcrumb-inner a:hover { text-decoration: underline; }
+.breadcrumb-inner span { color: var(--border); }
+
+/* Gallery */
+.gallery-section {
+  background: var(--navy);
+  padding: 24px;
+}
+.gallery-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 12px;
+  height: 420px;
+}
+.gallery-main {
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.gallery-main:hover img { transform: scale(1.03); }
+.gallery-thumbs {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 12px;
+}
+.gallery-thumb {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s;
+}
+.gallery-thumb.active { border-color: var(--green); }
+.gallery-thumb:hover { opacity: 0.9; transform: scale(1.02); }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Venue page layout */
+.venue-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left Column */
+.venue-left {}
+.venue-header { margin-bottom: 24px; }
+.venue-header h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.venue-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.venue-rating-big {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef9c3;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+.venue-rating-big .score {
+  font-weight: 800;
+  font-size: 16px;
+  color: #92400e;
+  font-family: var(--font-display);
+}
+.venue-rating-big .reviews { font-size: 12px; color: #92400e; }
+.venue-address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.venue-sport-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.venue-sport-tag {
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.venue-section { margin-bottom: 36px; }
+.venue-section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.venue-about-text {
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.8;
+}
+
+/* Amenities */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 500;
+}
+.amenity-icon { font-size: 20px; }
+
+/* Rules */
+.rules-list { display: flex; flex-direction: column; gap: 10px; }
+.rules-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.5;
+}
+.rules-list li::before {
+  content: '→';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Right column: Booking Widget */
+.booking-widget {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: sticky;
+  top: 90px;
+}
+.booking-widget-header {
+  background: linear-gradient(135deg, var(--navy) 0%, #064e3b 100%);
+  padding: 24px;
+  color: white;
+}
+.booking-widget-header h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.booking-widget-header p { font-size: 13px; color: rgba(255,255,255,0.6); }
+.booking-rate {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: #4ade80;
+  margin-top: 8px;
+}
+.booking-rate span { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.5); font-family: var(--font-body); }
+
+.booking-body { padding: 24px; }
+.booking-field { margin-bottom: 20px; }
+.booking-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.booking-field input[type="date"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.booking-field input[type="date"]:focus { border-color: var(--green); }
+
+.duration-btns { display: flex; gap: 8px; }
+.dur-btn {
+  flex: 1;
+  padding: 10px 8px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: white;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.dur-btn:hover { border-color: var(--green); color: var(--green); }
+.dur-btn.active { background: var(--green); border-color: var(--green); color: white; }
+
+/* Slots */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.slot-btn {
+  padding: 9px 6px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  font-family: var(--font-body);
+}
+.slot-btn.available { border-color: #d1fae5; background: #f0fdf4; color: var(--green-dark); }
+.slot-btn.available:hover { border-color: var(--green); background: var(--green-light); }
+.slot-btn.available.selected { border-color: var(--green); background: var(--green); color: white; transform: scale(1.05); }
+.slot-btn.booked { border-color: #fecaca; background: #fef2f2; color: #b91c1c; cursor: not-allowed; opacity: 0.7; }
+
+.slots-legend {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.legend-dot.available { background: var(--green); }
+.legend-dot.booked { background: var(--red); }
+.legend-dot.selected { background: var(--navy); }
+
+/* Price summary */
+.price-summary {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+  border: 1px solid var(--border);
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.price-row:last-child {
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  color: var(--text);
+  font-size: 16px;
+}
+.price-row:last-child span:last-child { color: var(--green); font-family: var(--font-display); }
+
+.booking-actions { display: flex; flex-direction: column; gap: 10px; }
+.booking-actions .btn { justify-content: center; width: 100%; }
+.btn-call {
+  background: #f0fdf4;
+  color: var(--green-dark);
+  border: 2px solid var(--green-light);
+  font-weight: 600;
+}
+.btn-call:hover { background: var(--green-light); }
+
+@media (max-width: 1024px) {
+  .venue-page { grid-template-columns: 1fr; }
+  .booking-widget { position: static; }
+  .gallery-inner { grid-template-columns: 1fr; height: 280px; }
+  .gallery-thumbs { grid-template-rows: none; grid-template-columns: repeat(3, 1fr); height: 100px; }
+}
+@media (max-width: 640px) {
+  .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+  .venue-header h1 { font-size: 24px; }
+  .slots-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-inner { height: 220px; }
+}

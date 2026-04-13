@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed — Divyam Turf</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+  <div id="navbar-root"></div>
+
+  <div class="confirm-page">
+    <div class="confirm-card">
+      <div class="confirm-icon">✅</div>
+      <h1>Booking Confirmed!</h1>
+      <p class="subtitle">Your turf slot is secured. See you on the field! ⚽</p>
+
+      <div class="booking-id-badge">Booking ID: <span id="conf-booking-id">—</span></div>
+
+      <div class="booking-details">
+        <div class="detail-row">
+          <span class="label">🏟️ Venue</span>
+          <span class="value" id="conf-venue">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">📍 Location</span>
+          <span class="value" id="conf-location">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">📅 Date</span>
+          <span class="value" id="conf-date">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">🕐 Slots</span>
+          <span class="value" id="conf-slots">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">⏱️ Duration</span>
+          <span class="value" id="conf-duration">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">💰 Total Paid</span>
+          <span class="value price" id="conf-total">—</span>
+        </div>
+      </div>
+
+      <div class="confirm-actions">
+        <button class="btn btn-outline-dark btn-lg" onclick="downloadReceipt()">📄 Download Receipt</button>
+        <a href="index.html" class="btn btn-primary btn-lg">🔍 Book Another</a>
+      </div>
+
+      <p style="margin-top:24px;font-size:13px;color:var(--text-muted)">A confirmation SMS has been sent to your registered mobile number.</p>
+    </div>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/booking.js"></script>
+  <script>
+    document.getElementById('navbar-root').innerHTML = getNavbarHTML('');
+    document.getElementById('footer-root').innerHTML = getFooterHTML();
+    initNavbar();
+    initConfirmPage();
+  </script>
+</body>
+</html>

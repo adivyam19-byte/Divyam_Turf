@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue — Divyam Turf Booking</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/venue.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+  <div id="navbar-root"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">🏠 Home</a>
+      <span>/</span>
+      <a href="index.html">Mumbai</a>
+      <span>/</span>
+      <a href="index.html">Football</a>
+      <span>/</span>
+      <span id="bc-venue">Venue</span>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section">
+    <div class="gallery-inner">
+      <div class="gallery-main">
+        <img id="gallery-main-img" src="" alt="Venue" loading="eager">
+      </div>
+      <div class="gallery-thumbs" id="gallery-thumbs"></div>
+    </div>
+  </div>
+
+  <div id="venue-content">
+    <!-- VENUE LAYOUT -->
+    <div class="venue-page">
+      <!-- LEFT -->
+      <div class="venue-left">
+        <div class="venue-header">
+          <h1 id="venue-name">Loading...</h1>
+          <div class="venue-meta">
+            <div class="venue-rating-big" id="venue-rating"></div>
+            <div class="venue-address" id="venue-address"></div>
+          </div>
+          <div class="venue-sport-tags" id="venue-sport-tags"></div>
+        </div>
+
+        <div class="venue-section">
+          <h3 class="venue-section-title">About This Venue</h3>
+          <p class="venue-about-text" id="venue-about"></p>
+        </div>
+
+        <div class="venue-section">
+          <h3 class="venue-section-title">Amenities & Facilities</h3>
+          <div class="amenities-grid" id="venue-amenities"></div>
+        </div>
+
+        <div class="venue-section">
+          <h3 class="venue-section-title">Rules & Guidelines</h3>
+          <ul class="rules-list" id="venue-rules"></ul>
+        </div>
+
+        <div class="venue-section">
+          <h3 class="venue-section-title">📍 Location & Access</h3>
+          <div style="background:#f8fafc;border-radius:16px;padding:20px;border:1px solid var(--border);">
+            <div style="background:#e2e8f0;height:200px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--text-muted)">
+              🗺️ Map View
+            </div>
+            <p style="margin-top:12px;font-size:14px;color:var(--text-muted)">Open in Google Maps for directions</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: BOOKING WIDGET -->
+      <div>
+        <div class="booking-widget">
+          <div class="booking-widget-header">
+            <h3>Book This Venue</h3>
+            <p>Select date, duration and time slots</p>
+            <div class="booking-rate" id="widget-rate">₹— <span>/ hour</span></div>
+          </div>
+          <div class="booking-body">
+            <div class="booking-field">
+              <label>📅 Select Date</label>
+              <input type="date" id="booking-date" onchange="recheckSlots()">
+            </div>
+
+            <div class="booking-field">
+              <label>⏱️ Duration per Slot</label>
+              <div class="duration-btns">
+                <button class="dur-btn active" data-dur="1" onclick="setDuration(this,1)">1 hr</button>
+                <button class="dur-btn" data-dur="1.5" onclick="setDuration(this,1.5)">1.5 hr</button>
+                <button class="dur-btn" data-dur="2" onclick="setDuration(this,2)">2 hr</button>
+                <button class="dur-btn" data-dur="3" onclick="setDuration(this,3)">3 hr</button>
+              </div>
+            </div>
+
+            <div class="booking-field">
+              <label>🕐 Available Time Slots</label>
+              <div class="slots-legend">
+                <div class="legend-item"><div class="legend-dot available"></div> Available</div>
+                <div class="legend-item"><div class="legend-dot booked"></div> Booked</div>
+                <div class="legend-item"><div class="legend-dot selected"></div> Selected</div>
+              </div>
+              <div class="slots-grid" id="slots-grid">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <div class="price-summary">
+              <div class="price-row"><span>Selected Slots</span><span id="summary-slots">—</span></div>
+              <div class="price-row"><span>Total Duration</span><span id="summary-duration">—</span></div>
+              <div class="price-row"><span>Total Amount</span><span id="summary-total">₹0</span></div>
+            </div>
+
+            <div class="booking-actions">
+              <button class="btn btn-primary btn-lg" onclick="proceedBooking()">✅ Proceed to Book</button>
+              <button class="btn btn-call btn-lg" onclick="callVenue()">📞 Call Venue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="data/venues.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/venue.js"></script>
+  <script>
+    document.getElementById('navbar-root').innerHTML = getNavbarHTML('venues');
+    document.getElementById('footer-root').innerHTML = getFooterHTML();
+    initNavbar();
+    initVenuePage();
+
+    function recheckSlots() {
+      // Could randomize slot availability based on date in real app
+    }
+  </script>
+</body>
+</html>

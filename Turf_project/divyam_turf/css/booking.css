@@ -1,0 +1,93 @@
+/* ── BOOKING CONFIRMATION PAGE ── */
+.confirm-page {
+  min-height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #f8fafc 100%);
+}
+.confirm-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: confirmIn 0.6s ease both;
+}
+@keyframes confirmIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.confirm-icon {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(22,163,74,0.35);
+  animation: iconPop 0.5s 0.3s ease both;
+}
+@keyframes iconPop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+.confirm-card h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.confirm-card .subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+.booking-id-badge {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green-dark);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+}
+.booking-details {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+  margin-bottom: 32px;
+  border: 1px solid var(--border);
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  gap: 16px;
+}
+.detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+.detail-row .label { color: var(--text-muted); font-weight: 500; flex-shrink: 0; }
+.detail-row .value { color: var(--text); font-weight: 600; text-align: right; }
+.detail-row .value.price { color: var(--green); font-family: var(--font-display); font-size: 16px; }
+
+.confirm-actions { display: flex; gap: 12px; }
+.confirm-actions .btn { flex: 1; justify-content: center; }
+
+@media (max-width: 480px) {
+  .confirm-card { padding: 32px 24px; }
+  .confirm-actions { flex-direction: column; }
+}
