@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divyam Turfs Booking — Mumbai's Best Sports Venues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g:#16a34a;--g2:#15803d;--g3:#bbf7d0;--g4:#f0fdf4;--g5:#dcfce7;
+  --dark:#0c0c0c;--dark2:#111;--dark3:#1a1a1a;--dark4:#222;
+  --white:#fff;--bg:#f7f8fa;--bg2:#f0f2f5;
+  --text:#111827;--t2:#4b5563;--t3:#9ca3af;--t4:#6b7280;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --red:#ef4444;--yellow:#f59e0b;--blue:#3b82f6;--orange:#f97316;
+  --sh:0 1px 3px rgba(0,0,0,0.07),0 4px 16px rgba(0,0,0,0.05);
+  --sh2:0 8px 32px rgba(0,0,0,0.12);--sh3:0 20px 60px rgba(0,0,0,0.15);
+  --r:14px;--r2:10px;--r3:8px;
+  --font:'Plus Jakarta Sans',sans-serif;--disp:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:var(--font);border:none;outline:none}
+input,select,textarea{font-family:var(--font);outline:none}
+
+/* ──── PAGES ──── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ──── TOAST ──── */
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--dark);color:#fff;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:600;opacity:0;transition:all 0.3s;z-index:99999;pointer-events:none;border:1px solid rgba(255,255,255,0.1);white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ──── LOADER ──── */
+.loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity 0.4s}
+.loader-logo{font-family:var(--disp);font-size:30px;font-weight:900;letter-spacing:-1px}
+.loader-logo em{color:var(--g);font-style:normal}
+.loader-bar{width:220px;height:3px;background:#e5e7eb;border-radius:2px;overflow:hidden}
+.loader-fill{height:100%;background:linear-gradient(90deg,var(--g),#4ade80);border-radius:2px;animation:lfill 1.2s ease forwards}
+@keyframes lfill{from{width:0}to{width:100%}}
+
+/* ──── BTT ──── */
+#btt{position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;background:var(--g);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(22,163,74,0.4);cursor:pointer;opacity:0;transform:translateY(12px);transition:all 0.3s;z-index:800}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--g2);transform:translateY(-2px)}
+
+/* ════════════════════════
+   NAVBAR
+════════════════════════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;padding:0 40px;gap:40px;transition:all 0.3s}
+.nav.solid{background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 1px 10px rgba(0,0,0,0.05)}
+.nav.glass{background:rgba(0,0,0,0.15);backdrop-filter:blur(16px)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:20px;font-weight:900;cursor:pointer;flex-shrink:0;letter-spacing:-0.5px}
+.nav-logo-ico{width:36px;height:36px;background:var(--g);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nav.glass .nav-logo{color:#fff}
+.nav.solid .nav-logo{color:var(--dark)}
+.nav-logo span{color:var(--g)}
+.nav.glass .nav-logo span{color:#86efac}
+.nav-links{display:flex;gap:2px;flex:1}
+.nl{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.nav.glass .nl{color:rgba(255,255,255,0.75)}
+.nav.glass .nl:hover,.nav.glass .nl.act{color:#fff;background:rgba(255,255,255,0.12)}
+.nav.solid .nl{color:var(--t2)}
+.nav.solid .nl:hover,.nav.solid .nl.act{color:var(--text);background:var(--bg)}
+.nl.act{color:var(--g)!important}
+.nav-r{display:flex;gap:10px;align-items:center;margin-left:auto;flex-shrink:0}
+.btn-gw{background:transparent;color:rgba(255,255,255,0.85);border:1.5px solid rgba(255,255,255,0.3);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:all 0.2s}
+.btn-gw:hover{border-color:rgba(255,255,255,0.7);color:#fff}
+.btn-gd{background:transparent;color:var(--text);border:1.5px solid var(--border2);padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:all 0.2s}
+.btn-gd:hover{border-color:var(--g);color:var(--g)}
+.btn-gr{background:var(--g);color:#fff;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:800;border:none;transition:all 0.2s}
+.btn-gr:hover{background:var(--g2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(22,163,74,0.4)}
+.nav-av{width:34px;height:34px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;cursor:pointer;flex-shrink:0}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;margin-left:auto}
+.ham span{width:22px;height:2px;border-radius:2px;display:block;transition:0.3s}
+.nav.glass .ham span{background:#fff}
+.nav.solid .ham span{background:var(--dark)}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:999;padding:8px 0 16px;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+.mob-menu.open{display:block}
+.mob-item{display:block;padding:13px 24px;font-size:15px;font-weight:600;color:var(--t2);cursor:pointer;transition:background 0.2s}
+.mob-item:hover{background:var(--bg);color:var(--text)}
+.mob-btns{display:flex;gap:10px;padding:14px 24px 0}
+.mob-btns button{flex:1;padding:11px;border-radius:9px;font-size:14px;font-weight:700}
+
+/* ════════════════════════
+   HOME — HERO
+════════════════════════ */
+.hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* Marquee background layer */
+.hero-marquee-wrap{position:absolute;inset:0;overflow:hidden;z-index:0}
+.hero-marquee-track{
+  position:absolute;top:50%;left:0;
+  transform:translateY(-50%);
+  white-space:nowrap;
+  font-family:var(--disp);font-size:clamp(80px,12vw,160px);font-weight:900;
+  color:rgba(255,255,255,0.04);letter-spacing:-4px;
+  animation:marquee-run 28s linear infinite;
+  pointer-events:none;user-select:none;
+}
+@keyframes marquee-run{from{transform:translateY(-50%) translateX(0)}to{transform:translateY(-50%) translateX(-50%)}}
+
+.hero-bg-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1920&q=85') center/cover no-repeat;filter:blur(2px) brightness(0.35) saturate(1.3);transform:scale(1.06)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,0.6) 0%,rgba(5,30,10,0.7) 50%,rgba(0,0,0,0.75) 100%)}
+
+/* blur vignette on marquee */
+.hero-blur-strip{position:absolute;left:0;right:0;top:0;bottom:0;backdrop-filter:blur(0px);background:transparent;z-index:1;pointer-events:none}
+
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:860px}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(22,163,74,0.18);border:1px solid rgba(22,163,74,0.4);color:#86efac;padding:6px 16px;border-radius:50px;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;animation:fadeDown 0.7s ease both}
+.hero-h1{font-family:var(--disp);font-size:clamp(44px,7vw,80px);font-weight:900;color:#fff;line-height:1.04;letter-spacing:-2.5px;margin-bottom:18px;animation:fadeDown 0.7s 0.1s ease both}
+.hero-h1 em{color:#4ade80;font-style:normal;position:relative}
+.hero-h1 em::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:3px;background:#4ade80;border-radius:2px;animation:lineGrow 0.6s 0.8s ease both;transform:scaleX(0);transform-origin:left}
+@keyframes lineGrow{to{transform:scaleX(1)}}
+.hero-sub{color:rgba(255,255,255,0.6);font-size:17px;font-weight:400;line-height:1.75;margin-bottom:40px;max-width:540px;margin-left:auto;margin-right:auto;animation:fadeDown 0.7s 0.2s ease both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Search Panel */
+.sp{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-radius:18px;padding:10px;display:flex;gap:8px;align-items:center;box-shadow:0 24px 80px rgba(0,0,0,0.5);animation:fadeUp 0.7s 0.3s ease both;max-width:820px;margin:0 auto 44px}
+.spf{flex:1;display:flex;align-items:center;gap:10px;padding:11px 14px;background:#f8f9fa;border-radius:11px;border:2px solid transparent;transition:all 0.2s;min-width:0}
+.spf:focus-within{border-color:var(--g);background:#fff;box-shadow:0 0 0 4px rgba(22,163,74,0.1)}
+.spf-ico{flex-shrink:0;width:18px;height:18px;opacity:0.4}
+.spf input,.spf select{border:none;background:transparent;font-size:14px;font-weight:600;color:var(--text);width:100%}
+.spf select{appearance:none;cursor:pointer}
+.sp-btn{background:var(--g);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:800;border:none;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:8px;transition:all 0.2s;white-space:nowrap;letter-spacing:0.01em}
+.sp-btn:hover{background:var(--g2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(22,163,74,0.45)}
+
+/* Stats */
+.hero-stats{display:flex;gap:0;justify-content:center;animation:fadeUp 0.7s 0.45s ease both}
+.hst{text-align:center;padding:0 28px}
+.hst+.hst{border-left:1px solid rgba(255,255,255,0.15)}
+.hst-n{font-family:var(--disp);font-size:28px;font-weight:900;color:#fff}
+.hst-l{font-size:11px;color:rgba(255,255,255,0.4);margin-top:3px;text-transform:uppercase;letter-spacing:0.06em}
+
+/* ════════════════════════
+   SECTIONS
+════════════════════════ */
+.sec{padding:72px 40px}
+.sec-in{max-width:1240px;margin:0 auto}
+.sec-label{display:inline-flex;align-items:center;gap:7px;background:var(--g4);color:var(--g2);padding:5px 14px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;border:1px solid var(--g3)}
+.sec-h{font-family:var(--disp);font-size:clamp(26px,3.5vw,40px);font-weight:900;color:var(--dark);letter-spacing:-1px;margin-bottom:8px;line-height:1.1}
+.sec-sub{font-size:15px;color:var(--t2);line-height:1.7}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:36px}
+.see-all{font-size:13px;font-weight:700;color:var(--g);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.see-all:hover{text-decoration:underline}
+
+/* ════════════════════════
+   SPORTS PILLS
+════════════════════════ */
+.sports-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.sp-pill{background:#fff;border:2px solid var(--border);border-radius:var(--r);padding:20px 12px;text-align:center;cursor:pointer;transition:all 0.22s;display:flex;flex-direction:column;align-items:center;gap:10px}
+.sp-pill:hover,.sp-pill.active{border-color:var(--g);background:var(--g4);transform:translateY(-3px);box-shadow:var(--sh)}
+.sp-ico{font-size:34px;display:block}
+.sp-nm{font-size:13px;font-weight:700;color:var(--text)}
+
+/* ════════════════════════
+   RESULTS / FILTER BAR
+════════════════════════ */
+.res-sec{padding:0 40px 72px}
+.res-in{max-width:1240px;margin:0 auto}
+.res-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.res-bar h2{font-family:var(--disp);font-size:22px;font-weight:800;color:var(--dark);letter-spacing:-0.4px}
+.res-bar h2 span{color:var(--g)}
+.fpills{display:flex;gap:8px;flex-wrap:wrap}
+.fpill{padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;border:2px solid var(--border);background:#fff;color:var(--t2);cursor:pointer;transition:all 0.18s}
+.fpill:hover{border-color:var(--g);color:var(--g)}
+.fpill.on{background:var(--g);border-color:var(--g);color:#fff}
+.sort-sel{padding:9px 14px;border-radius:9px;border:2px solid var(--border);font-size:13px;font-weight:600;color:var(--text);background:#fff;cursor:pointer;transition:border-color 0.2s}
+.sort-sel:focus{border-color:var(--g)}
+
+/* ════════════════════════
+   TURF CARDS
+════════════════════════ */
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tc{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);cursor:pointer;border:1px solid var(--border);transition:transform 0.28s cubic-bezier(0.25,0.8,0.25,1),box-shadow 0.28s,border-color 0.28s}
+.tc:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:rgba(22,163,74,0.2)}
+.tc-img{position:relative;height:210px;overflow:hidden}
+.tc-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
+.tc:hover .tc-img img{transform:scale(1.07)}
+.tc-ovl{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 55%)}
+.tc-bdgs{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px}
+.tbdg{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:0.03em}
+.tbdg-ex{background:var(--dark);color:#4ade80}
+.tbdg-dc{background:#ef4444;color:#fff}
+.tc-fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;font-size:14px;border:none;cursor:pointer;transition:all 0.2s;backdrop-filter:blur(4px)}
+.tc-fav:hover{background:#fff;transform:scale(1.12)}
+.tc-fav.liked{color:#ef4444}
+.tc-body{padding:18px 18px 0}
+.tc-name{font-family:var(--disp);font-size:15px;font-weight:800;color:var(--dark);margin-bottom:5px;line-height:1.3;transition:color 0.2s}
+.tc:hover .tc-name{color:var(--g2)}
+.tc-loc{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--t3);margin-bottom:9px}
+.tc-rat{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.tc-stars{color:var(--yellow);font-size:13px;letter-spacing:1px}
+.tc-rs{font-size:13px;font-weight:700}
+.tc-rc{font-size:12px;color:var(--t3)}
+.tc-sports{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tc-sport{font-size:11px;font-weight:700;padding:4px 10px;border-radius:50px;background:var(--g4);color:var(--g2)}
+.tc-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-top:1px solid #f3f4f6;margin-top:4px}
+.tc-ams{display:flex;gap:10px}
+.tc-am{font-size:12px;color:var(--t3);display:flex;align-items:center;gap:3px}
+.tc-btn{background:var(--g);color:#fff;padding:9px 20px;border-radius:9px;font-size:13px;font-weight:800;border:none;cursor:pointer;transition:all 0.2s}
+.tc-btn:hover{background:var(--g2)}
+
+/* empty / skel */
+.empty{grid-column:1/-1;text-align:center;padding:80px 20px}
+.empty-ico{font-size:72px;margin-bottom:16px}
+.empty h3{font-family:var(--disp);font-size:24px;font-weight:800;margin-bottom:8px}
+.empty p{color:var(--t3);font-size:15px}
+.sk{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.sk-img{height:210px;background:linear-gradient(90deg,#f0f0f0 25%,#f9f9f9 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+.sk-b{padding:18px;display:flex;flex-direction:column;gap:10px}
+.sk-l{height:13px;border-radius:6px;background:linear-gradient(90deg,#f0f0f0 25%,#f9f9f9 50%,#f0f0f0 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ════════════════════════
+   FEATURES / WHY
+════════════════════════ */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feat{background:#fff;border-radius:var(--r);padding:28px 22px;border:1px solid var(--border);transition:all 0.22s}
+.feat:hover{border-color:var(--g);box-shadow:var(--sh);transform:translateY(-3px);background:var(--g4)}
+.feat-ico{font-size:38px;margin-bottom:14px}
+.feat-h{font-family:var(--disp);font-size:16px;font-weight:800;margin-bottom:8px;color:var(--dark)}
+.feat-p{font-size:14px;color:var(--t2);line-height:1.65}
+
+/* ════════════════════════
+   TESTIMONIALS
+════════════════════════ */
+.testi-sec{background:var(--dark);padding:72px 40px}
+.testi-in{max-width:1240px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.tcard{background:#1a1a1a;border-radius:var(--r);padding:26px;border:1px solid rgba(255,255,255,0.06);transition:all 0.22s}
+.tcard:hover{border-color:rgba(22,163,74,0.3);transform:translateY(-3px)}
+.tcard-q{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:20px;padding-left:16px;position:relative}
+.tcard-q::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:3px;background:var(--g);border-radius:2px}
+.tcard-au{display:flex;align-items:center;gap:12px}
+.tcard-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff;flex-shrink:0}
+.tcard-nm{font-size:14px;font-weight:700;color:#fff}
+.tcard-loc{font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px}
+.tcard-stars{color:var(--yellow);font-size:12px;margin-top:3px}
+
+/* ════════════════════════
+   CTA BANNER
+════════════════════════ */
+.cta{background:linear-gradient(135deg,var(--g) 0%,#059669 100%);padding:64px 40px;text-align:center}
+.cta h2{font-family:var(--disp);font-size:clamp(28px,4vw,46px);font-weight:900;color:#fff;letter-spacing:-1px;margin-bottom:14px}
+.cta p{color:rgba(255,255,255,0.72);font-size:17px;margin-bottom:32px}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-wh{background:#fff;color:var(--g2);padding:14px 38px;border-radius:10px;font-size:15px;font-weight:800;border:none;cursor:pointer;transition:all 0.2s}
+.btn-wh:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-owh{background:transparent;color:#fff;padding:14px 38px;border-radius:10px;font-size:15px;font-weight:700;border:2px solid rgba(255,255,255,0.45);cursor:pointer;transition:all 0.2s}
+.btn-owh:hover{border-color:#fff;background:rgba(255,255,255,0.1)}
+
+/* ════════════════════════
+   DETAIL PAGE — GALLERY SLIDER
+════════════════════════ */
+.dp{background:var(--bg);padding-top:64px;min-height:100vh}
+.dp-gal-wrap{background:var(--dark);padding:28px 40px;position:relative}
+.dp-gal-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:12px;height:420px}
+.dp-slider{position:relative;border-radius:var(--r);overflow:hidden;height:100%}
+.dp-slides{display:flex;height:100%;transition:transform 0.45s cubic-bezier(0.25,0.8,0.25,1)}
+.dp-slide{flex-shrink:0;width:100%;height:100%}
+.dp-slide img{width:100%;height:100%;object-fit:cover}
+.dp-arr{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;z-index:10;transition:all 0.2s;backdrop-filter:blur(8px)}
+.dp-arr:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+.dp-arr-l{left:14px}
+.dp-arr-r{right:14px}
+.dp-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px}
+.dp-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.45);cursor:pointer;transition:all 0.2s;border:none}
+.dp-dot.on{background:#fff;width:24px;border-radius:4px}
+.dp-thumbs{display:flex;flex-direction:column;gap:10px;height:100%}
+.dp-thumb{flex:1;border-radius:10px;overflow:hidden;cursor:pointer;border:3px solid transparent;transition:all 0.2s}
+.dp-thumb.on{border-color:var(--g)}
+.dp-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s}
+.dp-thumb:hover img{transform:scale(1.06)}
+
+/* Detail body */
+.dp-body{max-width:1240px;margin:0 auto;padding:32px 40px 72px;display:grid;grid-template-columns:1fr 400px;gap:36px;align-items:start}
+.dp-bc{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t3);margin-bottom:20px;flex-wrap:wrap}
+.dp-bc .lk{color:var(--g);font-weight:600;cursor:pointer}
+.dp-bc .lk:hover{text-decoration:underline}
+.dp-bc .sep{color:var(--border2)}
+.dp-nm{font-family:var(--disp);font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-0.8px;margin-bottom:12px;color:var(--dark)}
+.dp-meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.dp-rat-b{display:flex;align-items:center;gap:6px;background:#fef9c3;padding:7px 14px;border-radius:50px}
+.dp-rat-b .sc{font-size:15px;font-weight:900;color:#92400e}
+.dp-rat-b .rv{font-size:12px;color:#92400e}
+.dp-addr{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--t2)}
+.dp-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.dp-tag{padding:7px 16px;border-radius:50px;background:var(--g4);color:var(--g2);font-size:13px;font-weight:700;border:1px solid var(--g3)}
+.dp-sec{margin-bottom:32px}
+.dp-st{font-family:var(--disp);font-size:18px;font-weight:800;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px;color:var(--dark)}
+.dp-about{font-size:15px;color:var(--t2);line-height:1.8}
+.dp-am-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dp-am{display:flex;align-items:center;gap:10px;padding:13px 15px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:14px;font-weight:600}
+.dp-am-ico{font-size:20px}
+.dp-rules{display:flex;flex-direction:column;gap:10px}
+.dp-rule{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--t2);line-height:1.55}
+.rule-dot{width:7px;height:7px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:5px}
+
+/* REVIEWS */
+.reviews-accordion{margin-top:4px}
+.rev-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:14px 0;border-bottom:2px solid var(--border);user-select:none}
+.rev-header:hover{opacity:0.8}
+.rev-title{font-family:var(--disp);font-size:18px;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--dark)}
+.rev-toggle{font-size:20px;color:var(--g);transition:transform 0.3s;background:none;border:none;cursor:pointer;line-height:1}
+.rev-toggle.open{transform:rotate(180deg)}
+.rev-body{display:none;padding-top:20px}
+.rev-body.show{display:block;animation:fadeIn 0.3s ease}
+.rev-list{display:flex;flex-direction:column;gap:16px}
+.rev-item{background:var(--bg);border-radius:12px;padding:18px;border:1px solid var(--border)}
+.rev-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.rev-user{display:flex;align-items:center;gap:10px}
+.rev-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex-shrink:0}
+.rev-name{font-size:14px;font-weight:700;color:var(--dark)}
+.rev-date{font-size:12px;color:var(--t3);margin-top:2px}
+.rev-stars{color:var(--yellow);font-size:13px}
+.rev-comment{font-size:14px;color:var(--t2);line-height:1.7;margin-top:8px}
+.rev-write{background:var(--g4);border:2px solid var(--g3);border-radius:12px;padding:16px;margin-top:16px}
+.rev-write h4{font-size:14px;font-weight:800;color:var(--g2);margin-bottom:12px}
+.rev-write-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rev-write input,.rev-write textarea,.rev-write select{width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:var(--font)}
+.rev-write textarea{grid-column:1/-1;height:80px;resize:none}
+.rev-write input:focus,.rev-write textarea:focus,.rev-write select:focus{border-color:var(--g)}
+.rev-submit{grid-column:1/-1;background:var(--g);color:#fff;padding:11px;border-radius:9px;font-size:14px;font-weight:800;border:none;cursor:pointer;transition:all 0.2s;font-family:var(--font);text-align:center}
+.rev-submit:hover{background:var(--g2)}
+
+/* BOOKING WIDGET */
+.bw{background:#fff;border-radius:16px;box-shadow:var(--sh3);border:1px solid var(--border);overflow:hidden;position:sticky;top:80px}
+.bw-top{background:var(--dark);padding:22px 24px}
+.bw-top h3{font-family:var(--disp);font-size:19px;font-weight:800;color:#fff;margin-bottom:4px}
+.bw-top p{font-size:13px;color:rgba(255,255,255,0.4)}
+.bw-price{font-family:var(--disp);font-size:32px;font-weight:900;color:#4ade80;margin-top:10px}
+.bw-price small{font-size:13px;font-weight:400;color:rgba(255,255,255,0.4);font-family:var(--font)}
+.bw-body{padding:22px}
+.bw-lbl{display:block;font-size:11px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.bw-inp{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;color:var(--text);transition:border-color 0.2s;background:#fff;font-family:var(--font)}
+.bw-inp:focus{border-color:var(--g)}
+.bw-field{margin-bottom:18px}
+.dur-row{display:flex;gap:8px}
+.dur-btn{flex:1;padding:10px 6px;border:2px solid var(--border);border-radius:9px;font-size:12px;font-weight:700;background:#fff;color:var(--t2);cursor:pointer;transition:all 0.2s;text-align:center;font-family:var(--font)}
+.dur-btn:hover{border-color:var(--g);color:var(--g)}
+.dur-btn.on{background:var(--g);border-color:var(--g);color:#fff}
+.slots-leg{display:flex;gap:14px;margin-bottom:10px}
+.s-leg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t3)}
+.s-dot{width:9px;height:9px;border-radius:50%}
+.slots-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-height:230px;overflow-y:auto;padding-right:2px}
+.slots-g::-webkit-scrollbar{width:4px}
+.slots-g::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
+.s-btn{padding:9px 4px;border-radius:8px;font-size:11px;font-weight:700;border:2px solid;cursor:pointer;text-align:center;font-family:var(--font);transition:all 0.15s}
+.s-av{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}
+.s-av:hover{border-color:var(--g);background:#dcfce7}
+.s-av.sel{border-color:var(--g);background:var(--g);color:#fff;transform:scale(1.04)}
+.s-bk{border-color:#fecaca;background:#fef2f2;color:#b91c1c;cursor:not-allowed;opacity:0.65}
+.ps{background:#f8fafb;border-radius:12px;padding:16px;margin:18px 0;border:1px solid var(--border)}
+.ps-row{display:flex;justify-content:space-between;font-size:14px;color:var(--t2);margin-bottom:8px}
+.ps-row:last-child{margin-bottom:0;padding-top:10px;border-top:1px solid var(--border);font-weight:800;color:var(--dark);font-size:16px}
+.ps-row:last-child span:last-child{color:var(--g);font-size:18px;font-family:var(--disp)}
+.bw-book{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:11px;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;font-family:var(--font);margin-bottom:10px}
+.bw-book:hover{background:var(--g2);transform:translateY(-1px)}
+.bw-call{width:100%;padding:13px;background:var(--g4);color:var(--g2);border:2px solid var(--g3);border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:var(--font)}
+.bw-call:hover{background:var(--g5)}
+
+/* ════════════════════════
+   VENUES PAGE
+════════════════════════ */
+.vp{padding-top:64px;min-height:100vh}
+.vp-hero{background:var(--dark);padding:48px 40px}
+.vp-hero-in{max-width:1240px;margin:0 auto}
+.vp-hero h1{font-family:var(--disp);font-size:clamp(32px,5vw,52px);font-weight:900;color:#fff;letter-spacing:-1.2px;margin-bottom:10px;line-height:1.08}
+.vp-hero p{color:rgba(255,255,255,0.5);font-size:16px;margin-bottom:28px}
+.vp-searchbar{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:6px;display:flex;gap:8px;max-width:640px}
+.vp-searchbar input{flex:1;background:transparent;border:none;color:#fff;padding:10px 14px;font-size:15px;font-family:var(--font)}
+.vp-searchbar input::placeholder{color:rgba(255,255,255,0.35)}
+.vp-searchbar button{background:var(--g);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:800;cursor:pointer;transition:background 0.2s}
+.vp-searchbar button:hover{background:var(--g2)}
+.vp-body{max-width:1240px;margin:0 auto;padding:36px 40px 72px;display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start}
+.sidebar{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;position:sticky;top:80px}
+.sb-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sb-head span{font-size:15px;font-weight:800;color:var(--dark)}
+.sb-head button{font-size:12px;color:var(--g);background:none;border:none;cursor:pointer;font-weight:700}
+.sb-sec{padding:18px 20px;border-bottom:1px solid var(--border)}
+.sb-sec:last-child{border-bottom:none}
+.sb-label{font-size:11px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}
+.sb-check{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer}
+.sb-check input{accent-color:var(--g);width:16px;height:16px;cursor:pointer}
+.sb-check label{font-size:14px;color:var(--text);cursor:pointer}
+.pr-row{display:flex;gap:8px}
+.pr-inp{flex:1;padding:9px 10px;border:2px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);font-family:var(--font);transition:border-color 0.2s}
+.pr-inp:focus{border-color:var(--g)}
+.vp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+
+/* ════════════════════════
+   PAYMENT PAGE
+════════════════════════ */
+.pay-pg{padding-top:64px;min-height:100vh;background:var(--bg)}
+.pay-in{max-width:1020px;margin:0 auto;padding:40px}
+.pay-grid{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start}
+.pay-card{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.pay-ch{padding:18px 22px;border-bottom:1px solid var(--border);font-family:var(--disp);font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--dark)}
+.pay-cb{padding:22px}
+.pay-field{margin-bottom:16px}
+.pay-label{display:block;font-size:12px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px}
+.pay-inp{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:9px;font-size:14px;color:var(--text);transition:border-color 0.2s;font-family:var(--font)}
+.pay-inp:focus{border-color:var(--g)}
+.pay-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay-methods{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.pm{flex:1;min-width:90px;padding:12px 10px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--t2)}
+.pm.on{border-color:var(--g);background:var(--g4);color:var(--g2)}
+.pm:hover:not(.on){border-color:var(--border2)}
+.upi-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.upi-o{border:2px solid var(--border);border-radius:9px;padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;font-size:13px;font-weight:600;color:var(--t2)}
+.upi-o.on,.upi-o:hover{border-color:var(--g);background:var(--g4);color:var(--g2)}
+.pay-sum{background:#fff;border-radius:var(--r);border:1px solid var(--border);overflow:hidden;position:sticky;top:82px}
+.pay-sh{background:var(--dark);padding:18px 22px;color:#fff;font-family:var(--disp);font-size:16px;font-weight:800}
+.pay-sb{padding:22px}
+.pay-sim{height:120px;border-radius:10px;overflow:hidden;margin-bottom:16px}
+.pay-sim img{width:100%;height:100%;object-fit:cover}
+.pay-sn{font-family:var(--disp);font-size:16px;font-weight:800;margin-bottom:4px;color:var(--dark)}
+.pay-sl{font-size:13px;color:var(--t3);margin-bottom:16px}
+.pay-sr{display:flex;justify-content:space-between;font-size:14px;color:var(--t2);margin-bottom:10px}
+.pay-sr:last-child{font-weight:800;color:var(--dark);font-size:16px;padding-top:10px;border-top:1px solid var(--border);margin-bottom:0}
+.pay-sr:last-child span:last-child{color:var(--g);font-size:18px;font-family:var(--disp)}
+.pay-now{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:11px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:18px;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8px}
+.pay-now:hover{background:var(--g2);transform:translateY(-1px)}
+.pay-sec{text-align:center;font-size:12px;color:var(--t3);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* ════════════════════════
+   CONFIRM PAGE
+════════════════════════ */
+.conf-pg{padding-top:64px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 24px 60px;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 45%,#f4f6f8 100%)}
+.conf-card{background:#fff;border-radius:24px;padding:52px;max-width:580px;width:100%;box-shadow:var(--sh3);text-align:center;animation:confPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes confPop{from{opacity:0;transform:scale(0.86) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.conf-ico{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#4ade80);display:flex;align-items:center;justify-content:center;font-size:46px;margin:0 auto 24px;box-shadow:0 8px 32px rgba(22,163,74,0.3);animation:icoPop 0.4s 0.3s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes icoPop{from{transform:scale(0)}to{transform:scale(1)}}
+.conf-h{font-family:var(--disp);font-size:32px;font-weight:900;color:var(--dark);margin-bottom:8px;letter-spacing:-0.7px}
+.conf-sub{color:var(--t2);font-size:16px;margin-bottom:26px;line-height:1.6}
+.conf-bid{display:inline-block;background:var(--g4);color:var(--g2);padding:9px 24px;border-radius:50px;font-weight:800;font-size:16px;letter-spacing:0.04em;margin-bottom:28px;border:1px solid var(--g3)}
+.conf-det{background:#f8fafb;border-radius:16px;padding:24px;text-align:left;margin-bottom:28px;border:1px solid var(--border)}
+.conf-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);gap:16px}
+.conf-row:last-child{border-bottom:none;padding-bottom:0}
+.conf-lbl{font-size:13px;color:var(--t3);font-weight:600;flex-shrink:0}
+.conf-val{font-size:14px;font-weight:700;color:var(--text);text-align:right}
+.conf-val.price{color:var(--g);font-size:18px;font-weight:900;font-family:var(--disp)}
+.conf-acts{display:flex;gap:12px}
+.conf-acts button{flex:1;padding:14px;border-radius:11px;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--font);transition:all 0.2s}
+.conf-dl{background:var(--g4);color:var(--g2);border:2px solid var(--g3)}
+.conf-dl:hover{background:var(--g5)}
+.conf-hm{background:var(--g);color:#fff;border:none}
+.conf-hm:hover{background:var(--g2)}
+
+/* ════════════════════════
+   AUTH PAGES
+════════════════════════ */
+.auth-pg{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 20px 40px;background:linear-gradient(135deg,#f0fdf4 0%,#f7f8fa 100%)}
+.auth-card{background:#fff;border-radius:20px;padding:44px;max-width:460px;width:100%;box-shadow:var(--sh3);border:1px solid var(--border)}
+.auth-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.auth-logo .ico{width:38px;height:38px;background:var(--g);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px}
+.auth-logo span{font-family:var(--disp);font-size:20px;font-weight:900;color:var(--dark);letter-spacing:-0.4px}
+.auth-logo span em{color:var(--g);font-style:normal}
+.auth-h{font-family:var(--disp);font-size:26px;font-weight:900;color:var(--dark);margin-bottom:8px;letter-spacing:-0.5px}
+.auth-sub{font-size:14px;color:var(--t2);margin-bottom:28px;line-height:1.6}
+.auth-f{margin-bottom:18px}
+.auth-lbl{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+.auth-inp{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);transition:border-color 0.2s;background:#fff;font-family:var(--font)}
+.auth-inp:focus{border-color:var(--g)}
+.auth-inp.err{border-color:#ef4444;background:#fef2f2}
+.auth-er{font-size:12px;color:#ef4444;margin-top:5px;display:none}
+.auth-er.show{display:block}
+.auth-sub-btn{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:11px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:8px;letter-spacing:0.01em;font-family:var(--font)}
+.auth-sub-btn:hover{background:var(--g2);transform:translateY(-1px)}
+.auth-div{display:flex;align-items:center;gap:14px;margin:20px 0}
+.auth-div span{font-size:13px;color:var(--t3);white-space:nowrap}
+.auth-div::before,.auth-div::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-sw{text-align:center;font-size:14px;color:var(--t2);margin-top:20px}
+.auth-sw a{color:var(--g);font-weight:700;cursor:pointer}
+.auth-sw a:hover{text-decoration:underline}
+.goog-btn{width:100%;padding:13px;background:#fff;color:var(--text);border:2px solid var(--border);border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font)}
+.goog-btn:hover{border-color:var(--border2);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.pw-wrap{position:relative}
+.pw-eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;opacity:0.4;background:none;border:none;transition:opacity 0.2s}
+.pw-eye:hover{opacity:0.7}
+
+/* ════════════════════════
+   ABOUT PAGE
+════════════════════════ */
+.about-pg{padding-top:64px;min-height:100vh;background:var(--bg)}
+.about-hero{background:var(--dark);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600&q=80') center/cover;filter:brightness(0.18) saturate(1.4)}
+.about-hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.about-hero h1{font-family:var(--disp);font-size:clamp(36px,5vw,62px);font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:16px;line-height:1.05}
+.about-hero h1 em{color:#4ade80;font-style:normal}
+.about-hero p{color:rgba(255,255,255,0.6);font-size:18px;line-height:1.7}
+.about-body{max-width:1240px;margin:0 auto;padding:72px 40px}
+.about-story{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:72px}
+.about-story-img{border-radius:20px;overflow:hidden;height:420px;box-shadow:var(--sh3)}
+.about-story-img img{width:100%;height:100%;object-fit:cover}
+.about-story-txt .sec-label{margin-bottom:14px}
+.about-story-txt h2{font-family:var(--disp);font-size:clamp(28px,3.5vw,42px);font-weight:900;color:var(--dark);letter-spacing:-1px;margin-bottom:20px;line-height:1.1}
+.about-story-txt p{font-size:15px;color:var(--t2);line-height:1.85;margin-bottom:18px}
+.about-vals{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:72px}
+.aval{background:#fff;border-radius:var(--r);padding:30px 24px;border:1px solid var(--border);text-align:center;transition:all 0.22s}
+.aval:hover{border-color:var(--g);transform:translateY(-4px);box-shadow:var(--sh2);background:var(--g4)}
+.aval-ico{font-size:40px;margin-bottom:14px}
+.aval-h{font-family:var(--disp);font-size:18px;font-weight:800;margin-bottom:8px;color:var(--dark)}
+.aval-p{font-size:14px;color:var(--t2);line-height:1.7}
+.about-team{margin-bottom:72px}
+.about-team h2{font-family:var(--disp);font-size:clamp(26px,3.5vw,38px);font-weight:900;color:var(--dark);letter-spacing:-0.8px;margin-bottom:8px}
+.about-team p{color:var(--t2);font-size:15px;margin-bottom:36px}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.team-card{background:#fff;border-radius:var(--r);padding:24px;text-align:center;border:1px solid var(--border);transition:all 0.22s}
+.team-card:hover{box-shadow:var(--sh2);transform:translateY(-3px);border-color:rgba(22,163,74,0.2)}
+.team-av{width:72px;height:72px;border-radius:50%;background:var(--g);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;margin:0 auto 14px;font-family:var(--disp)}
+.team-nm{font-family:var(--disp);font-size:16px;font-weight:800;margin-bottom:4px;color:var(--dark)}
+.team-role{font-size:13px;color:var(--g2);font-weight:600;margin-bottom:8px}
+.team-bio{font-size:13px;color:var(--t2);line-height:1.6}
+.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.astat{background:var(--g);border-radius:var(--r);padding:28px;text-align:center}
+.astat-n{font-family:var(--disp);font-size:38px;font-weight:900;color:#fff;margin-bottom:6px}
+.astat-l{font-size:14px;color:rgba(255,255,255,0.7);font-weight:600}
+
+/* ════════════════════════
+   CONTACT PAGE
+════════════════════════ */
+.contact-pg{padding-top:64px;min-height:100vh;background:var(--bg)}
+.contact-hero{background:var(--dark);padding:72px 40px;text-align:center;position:relative;overflow:hidden}
+.contact-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(22,163,74,0.2) 0%,transparent 70%)}
+.contact-hero-in{position:relative;z-index:1}
+.contact-hero h1{font-family:var(--disp);font-size:clamp(36px,5vw,58px);font-weight:900;color:#fff;letter-spacing:-1.5px;margin-bottom:14px;line-height:1.06}
+.contact-hero h1 em{color:#4ade80;font-style:normal}
+.contact-hero p{color:rgba(255,255,255,0.55);font-size:17px;line-height:1.7;max-width:520px;margin:0 auto}
+.contact-body{max-width:1240px;margin:0 auto;padding:64px 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info h2{font-family:var(--disp);font-size:28px;font-weight:800;color:var(--dark);letter-spacing:-0.6px;margin-bottom:10px}
+.contact-info p{font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:32px}
+.ci-items{display:flex;flex-direction:column;gap:16px;margin-bottom:36px}
+.ci-item{display:flex;align-items:flex-start;gap:16px;padding:18px;background:#fff;border-radius:12px;border:1px solid var(--border);transition:all 0.2s}
+.ci-item:hover{border-color:var(--g);box-shadow:var(--sh)}
+.ci-ico{width:44px;height:44px;border-radius:11px;background:var(--g4);border:1px solid var(--g3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.ci-txt h4{font-size:14px;font-weight:800;color:var(--dark);margin-bottom:4px}
+.ci-txt p{font-size:14px;color:var(--t2);line-height:1.55;margin:0}
+.ci-txt a{color:var(--g);font-weight:600}
+.ci-txt a:hover{text-decoration:underline}
+.contact-social{display:flex;gap:10px}
+.csoc{width:42px;height:42px;border-radius:10px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all 0.2s}
+.csoc:hover{background:var(--g);border-color:var(--g);transform:translateY(-2px)}
+.contact-form-wrap{background:#fff;border-radius:20px;padding:36px;box-shadow:var(--sh3);border:1px solid var(--border)}
+.cf-h{font-family:var(--disp);font-size:24px;font-weight:900;color:var(--dark);margin-bottom:6px;letter-spacing:-0.4px}
+.cf-sub{font-size:14px;color:var(--t2);margin-bottom:28px;line-height:1.6}
+.cf-field{margin-bottom:18px}
+.cf-lbl{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px}
+.cf-inp{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);transition:border-color 0.2s;background:#fff;font-family:var(--font)}
+.cf-inp:focus{border-color:var(--g);box-shadow:0 0 0 4px rgba(22,163,74,0.08)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cf-ta{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);font-family:var(--font);resize:none;height:140px;transition:border-color 0.2s}
+.cf-ta:focus{border-color:var(--g);box-shadow:0 0 0 4px rgba(22,163,74,0.08)}
+.cf-submit{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:11px;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.2s;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8px}
+.cf-submit:hover{background:var(--g2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(22,163,74,0.4)}
+.cf-note{text-align:center;font-size:12px;color:var(--t3);margin-top:12px}
+.contact-map{margin:0 40px 60px;max-width:1160px;margin-left:auto;margin-right:auto}
+.contact-map h3{font-family:var(--disp);font-size:22px;font-weight:800;color:var(--dark);margin-bottom:16px}
+.map-mock{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:1px solid var(--border)}
+.map-pin{font-size:48px}
+.map-addr{font-size:15px;color:var(--g2);font-weight:700}
+.map-sub{font-size:13px;color:var(--t2)}
+.faq-sec{background:#fff;padding:72px 40px}
+.faq-in{max-width:820px;margin:0 auto}
+.faq-h{font-family:var(--disp);font-size:30px;font-weight:900;color:var(--dark);letter-spacing:-0.7px;margin-bottom:8px;text-align:center}
+.faq-sub{font-size:15px;color:var(--t2);text-align:center;margin-bottom:40px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-size:15px;font-weight:700;color:var(--dark);transition:background 0.2s;gap:12px}
+.faq-q:hover{background:var(--bg)}
+.faq-q .faq-icon{font-size:18px;color:var(--g);transition:transform 0.3s;flex-shrink:0}
+.faq-q.open .faq-icon{transform:rotate(45deg)}
+.faq-a{display:none;padding:0 22px 18px;font-size:14px;color:var(--t2);line-height:1.75}
+.faq-a.show{display:block;animation:fadeIn 0.25s ease}
+
+/* ════════════════════════
+   FOOTER
+════════════════════════ */
+.footer{background:var(--dark);color:rgba(255,255,255,0.5);padding:64px 40px 0}
+.footer-g{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.f-logo{font-family:var(--disp);font-size:22px;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px;margin-bottom:14px;letter-spacing:-0.5px}
+.f-logo .fli{width:32px;height:32px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.f-logo span{color:var(--g)}
+.f-desc{font-size:14px;line-height:1.75;margin-bottom:22px;color:rgba(255,255,255,0.4)}
+.f-socs{display:flex;gap:8px}
+.fsoc{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.2s}
+.fsoc:hover{background:var(--g);border-color:var(--g)}
+.f-col h4{font-size:11px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:18px}
+.f-col ul{display:flex;flex-direction:column;gap:10px}
+.f-col ul li{font-size:14px;cursor:pointer;transition:color 0.2s}
+.f-col ul li:hover{color:#4ade80}
+.f-contact{font-size:14px;display:flex;align-items:flex-start;gap:8px;margin-bottom:12px}
+.f-bot{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:13px;color:rgba(255,255,255,0.25);flex-wrap:wrap;gap:8px}
+.f-bot a{color:rgba(255,255,255,0.4);transition:color 0.2s}
+.f-bot a:hover{color:#4ade80}
+
+/* ════════════════════════
+   RESPONSIVE
+════════════════════════ */
+@media(max-width:1100px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .sports-grid{grid-template-columns:repeat(4,1fr)}
+  .footer-g{grid-template-columns:1fr 1fr;gap:32px}
+  .dp-body{grid-template-columns:1fr}
+  .bw{position:static}
+  .vp-body{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .dp-gal-in{grid-template-columns:1fr;height:300px}
+  .dp-thumbs{flex-direction:row;height:80px}
+  .dp-thumb{flex:1}
+  .about-story{grid-template-columns:1fr}
+  .about-story-img{height:300px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .about-stats{grid-template-columns:repeat(2,1fr)}
+  .contact-body{grid-template-columns:1fr}
+  .pay-grid{grid-template-columns:1fr}
+  .pay-sum{position:static}
+}
+@media(max-width:768px){
+  .nav{padding:0 20px}
+  .nav-links,.nav-r{display:none}
+  .ham{display:flex}
+  .sp{flex-direction:column}
+  .sp-btn{width:100%;justify-content:center}
+  .sec,.res-sec,.testi-sec,.cta,.footer,.contact-body,.about-body,.faq-sec,.contact-map{padding-left:20px;padding-right:20px}
+  .vp-hero{padding:36px 20px}
+  .vp-body,.dp-body,.dp-gal-wrap,.pay-in{padding-left:20px;padding-right:20px}
+  .about-hero,.contact-hero{padding:60px 20px}
+  .contact-body{padding:40px 20px}
+  .hero-stats{flex-direction:column;gap:14px}
+  .hst+.hst{border-left:none;border-top:1px solid rgba(255,255,255,0.12);padding-top:14px}
+}
+@media(max-width:640px){
+  .cards-grid,.vp-grid{grid-template-columns:1fr}
+  .sports-grid{grid-template-columns:repeat(3,1fr)}
+  .testi-grid,.feat-grid,.about-vals{grid-template-columns:1fr}
+  .footer-g{grid-template-columns:1fr}
+  .dp-am-grid{grid-template-columns:repeat(2,1fr)}
+  .conf-acts{flex-direction:column}
+  .auth-card,.conf-card{padding:32px 22px}
+  .rev-write-form{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .cf-row{grid-template-columns:1fr}
+  .hero-marquee-track{font-size:72px}
+}
+.anim{animation:fadeIn 0.45s ease both}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-logo">Divyam <em>Turfs</em></div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- Back to top -->
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="nav glass" id="nav">
+  <div class="nav-logo" onclick="goHome()">
+    <div class="nav-logo-ico">⚽</div>
+    Divyam <span>Turfs</span>
+  </div>
+  <div class="nav-links">
+    <span class="nl act" id="nl-home" onclick="goHome()">Home</span>
+    <span class="nl" id="nl-venues" onclick="goVenues()">Venues</span>
+    <span class="nl" id="nl-sports" onclick="toast('Sports section coming soon!')">Sports</span>
+    <span class="nl" id="nl-about" onclick="showPage('about')">About</span>
+    <span class="nl" id="nl-contact" onclick="showPage('contact')">Contact</span>
+  </div>
+  <div class="nav-r" id="nav-r">
+    <button class="btn-gw" onclick="showPage('login')">Login</button>
+    <button class="btn-gr" onclick="showPage('signup')">Sign Up Free</button>
+  </div>
+  <button class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-menu" id="mob">
+  <span class="mob-item" onclick="goHome();closeMob()">🏠 Home</span>
+  <span class="mob-item" onclick="goVenues();closeMob()">🏟️ Venues</span>
+  <span class="mob-item" onclick="showPage('about');closeMob()">ℹ️ About</span>
+  <span class="mob-item" onclick="showPage('contact');closeMob()">📞 Contact</span>
+  <div class="mob-btns" id="mob-btns">
+    <button class="btn-gd" onclick="showPage('login');closeMob()">Login</button>
+    <button class="btn-gr" onclick="showPage('signup');closeMob()">Sign Up</button>
+  </div>
+</div>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<div class="page active" id="pg-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Marquee background -->
+    <div class="hero-marquee-wrap">
+      <div class="hero-marquee-track" id="marquee-track">
+        DIVYAM TURFS &nbsp;⚽&nbsp; BOOK YOUR SLOT &nbsp;🏏&nbsp; PLAY MORE &nbsp;🏸&nbsp; BEST TURFS MUMBAI &nbsp;⚽&nbsp; DIVYAM TURFS &nbsp;🏏&nbsp; BOOK YOUR SLOT &nbsp;🏸&nbsp; PLAY MORE &nbsp;⚽&nbsp; BEST TURFS MUMBAI &nbsp;🏏&nbsp; DIVYAM TURFS &nbsp;⚽&nbsp; BOOK YOUR SLOT &nbsp;🏸&nbsp;
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-chip">⚡ Mumbai's #1 Turf Booking Platform</div>
+      <h1 class="hero-h1">Book The Best<br><em>Turf</em> In Mumbai</h1>
+      <p class="hero-sub">Find, compare and instantly book premium sports grounds near you. 55+ verified venues across Mumbai.</p>
+
+      <div class="sp" id="hero-sp">
+        <div class="spf">
+          <svg class="spf-ico" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <input type="text" id="h-loc" placeholder="Area (e.g. Andheri, Bandra)" autocomplete="off">
+        </div>
+        <div class="spf">
+          <svg class="spf-ico" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/></svg>
+          <select id="h-sport">
+            <option value="">All Sports</option>
+            <option>Football</option><option>Cricket</option>
+            <option>Badminton</option><option>Tennis</option>
+            <option>Basketball</option><option>Pickleball</option>
+          </select>
+        </div>
+        <div class="spf">
+          <svg class="spf-ico" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <input type="date" id="h-date">
+        </div>
+        <button class="sp-btn" onclick="doSearch()">🔍 Search</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hst"><div class="hst-n">55+</div><div class="hst-l">Venues</div></div>
+        <div class="hst"><div class="hst-n">15K+</div><div class="hst-l">Bookings</div></div>
+        <div class="hst"><div class="hst-n">4.8★</div><div class="hst-l">Avg Rating</div></div>
+        <div class="hst"><div class="hst-n">₹300</div><div class="hst-l">Starts From</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sports -->
+  <section class="sec" style="background:#fff;padding-top:52px;padding-bottom:52px">
+    <div class="sec-in">
+      <div class="sec-head">
+        <div><div class="sec-label">🏅 Pick Your Sport</div><h2 class="sec-h">Choose Your Sport</h2></div>
+        <span class="see-all" onclick="goVenues()">Browse all venues →</span>
+      </div>
+      <div class="sports-grid">
+        <div class="sp-pill" onclick="quickSport('Football')"><span class="sp-ico">⚽</span><div class="sp-nm">Football</div></div>
+        <div class="sp-pill" onclick="quickSport('Cricket')"><span class="sp-ico">🏏</span><div class="sp-nm">Cricket</div></div>
+        <div class="sp-pill" onclick="quickSport('Badminton')"><span class="sp-ico">🏸</span><div class="sp-nm">Badminton</div></div>
+        <div class="sp-pill" onclick="quickSport('Tennis')"><span class="sp-ico">🎾</span><div class="sp-nm">Tennis</div></div>
+        <div class="sp-pill" onclick="quickSport('Basketball')"><span class="sp-ico">🏀</span><div class="sp-nm">Basketball</div></div>
+        <div class="sp-pill" onclick="quickSport('Pickleball')"><span class="sp-ico">🏓</span><div class="sp-nm">Pickleball</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results (hidden until search) -->
+  <div id="search-results" style="display:none">
+    <div class="res-sec">
+      <div class="res-in">
+        <div class="res-bar">
+          <div>
+            <h2 id="res-title">Results</h2>
+            <p id="res-sub" style="font-size:13px;color:var(--t3);margin-top:4px"></p>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <div class="fpills" id="fpills"></div>
+            <select class="sort-sel" id="msort" onchange="renderResults()">
+              <option value="rel">Relevance</option>
+              <option value="pL">Price: Low→High</option>
+              <option value="pH">Price: High→Low</option>
+              <option value="rat">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+        <div class="cards-grid" id="results-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <section class="sec" id="featured-sec">
+    <div class="sec-in">
+      <div class="sec-head">
+        <div><div class="sec-label">⭐ Top Picks</div><h2 class="sec-h">Featured Turfs in Mumbai</h2><p class="sec-sub">Handpicked venues with top ratings and premium facilities</p></div>
+        <span class="see-all" onclick="goVenues()">View all 55+ →</span>
+      </div>
+      <div class="cards-grid" id="featured-grid"></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="sec" style="background:#fff;padding-top:52px;padding-bottom:52px">
+    <div class="sec-in">
+      <div style="text-align:center;margin-bottom:36px">
+        <div class="sec-label" style="display:inline-flex">🚀 Why Choose Us</div>
+        <h2 class="sec-h" style="margin-top:10px">Why Divyam Turfs?</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-ico">⚡</div><div class="feat-h">Instant Booking</div><p class="feat-p">Book in 60 seconds. Instant confirmation with zero phone calls needed.</p></div>
+        <div class="feat"><div class="feat-ico">🏆</div><div class="feat-h">Verified Venues</div><p class="feat-p">All 55+ venues personally verified for quality, safety & facilities.</p></div>
+        <div class="feat"><div class="feat-ico">💰</div><div class="feat-h">Best Prices</div><p class="feat-p">Transparent pricing, no hidden fees. Exclusive deals for regular players.</p></div>
+        <div class="feat"><div class="feat-ico">🔄</div><div class="feat-h">Easy Cancellation</div><p class="feat-p">Cancel 2 hours before your slot for a 100% refund. No questions asked.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testi-sec">
+    <div class="testi-in">
+      <div class="sec-label" style="display:inline-flex;background:rgba(22,163,74,0.12);border:1px solid rgba(22,163,74,0.25);color:#86efac">💬 Player Reviews</div>
+      <h2 class="sec-h" style="color:#fff;margin-top:10px">What Players Say</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,0.4)">Real experiences from Mumbai's sports community</p>
+      <div class="testi-grid">
+        <div class="tcard"><p class="tcard-q">Found Divyam Turfs through a friend — booking is seamless, turf quality is excellent. Best platform in Mumbai for football lovers.</p><div class="tcard-au"><div class="tcard-av" style="background:#059669">R</div><div><div class="tcard-nm">Rahul Sharma</div><div class="tcard-loc">Andheri, Mumbai</div><div class="tcard-stars">★★★★★</div></div></div></div>
+        <div class="tcard"><p class="tcard-q">Our corporate team books every Friday via Divyam Turfs. Always great slots, top-notch venues, and very reasonable prices!</p><div class="tcard-au"><div class="tcard-av" style="background:#7c3aed">P</div><div><div class="tcard-nm">Priya Menon</div><div class="tcard-loc">Bandra, Mumbai</div><div class="tcard-stars">★★★★★</div></div></div></div>
+        <div class="tcard"><p class="tcard-q">Switched from calling venues directly — instant confirmation is a total game changer. Love the evening floodlit sessions!</p><div class="tcard-au"><div class="tcard-av" style="background:#dc2626">A</div><div><div class="tcard-nm">Arjun Kapoor</div><div class="tcard-loc">Powai, Mumbai</div><div class="tcard-stars">★★★★⭐</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to Play? Book Your Slot Now</h2>
+    <p>Join 15,000+ players who've discovered Mumbai's best turfs</p>
+    <div class="cta-btns">
+      <button class="btn-wh" onclick="doSearch()">🔍 Find a Turf</button>
+      <button class="btn-owh" onclick="showPage('signup')">📱 Sign Up Free</button>
+    </div>
+  </section>
+
+  <div id="home-footer"></div>
+</div>
+
+<!-- ══════════ VENUES PAGE ══════════ -->
+<div class="page" id="pg-venues">
+  <div class="vp">
+    <div class="vp-hero">
+      <div class="vp-hero-in">
+        <div class="sec-label" style="display:inline-flex;background:rgba(22,163,74,0.12);border:1px solid rgba(22,163,74,0.25);color:#86efac;margin-bottom:12px">🏟️ All Venues</div>
+        <h1>Football & Sports Grounds<br>in Mumbai</h1>
+        <p>Browse 55+ premium verified venues across Mumbai</p>
+        <div class="vp-searchbar">
+          <input type="text" id="v-search" placeholder="Search venue, area or sport..." oninput="renderVenues()">
+          <button onclick="renderVenues()">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="vp-body">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sb-head"><span>Filters</span><button onclick="clearVF()">Clear All</button></div>
+        <div class="sb-sec">
+          <div class="sb-label">Sport</div>
+          <div id="sb-sports"></div>
+        </div>
+        <div class="sb-sec">
+          <div class="sb-label">Area</div>
+          <div id="sb-areas"></div>
+        </div>
+        <div class="sb-sec">
+          <div class="sb-label">Price (₹/hr)</div>
+          <div class="pr-row">
+            <input class="pr-inp" type="number" id="vp-min" placeholder="Min" oninput="renderVenues()">
+            <input class="pr-inp" type="number" id="vp-max" placeholder="Max" oninput="renderVenues()">
+          </div>
+        </div>
+        <div class="sb-sec">
+          <div class="sb-label">Minimum Rating</div>
+          <select style="width:100%;padding:9px 10px;border:2px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);background:#fff;font-family:var(--font);cursor:pointer" id="v-rat" onchange="renderVenues()">
+            <option value="0">Any Rating</option>
+            <option value="4">4+ Stars</option>
+            <option value="4.5">4.5+ Stars</option>
+          </select>
+        </div>
+        <div class="sb-sec">
+          <div class="sb-label">Sort By</div>
+          <select class="sort-sel" id="v-sort" onchange="renderVenues()" style="width:100%">
+            <option value="rel">Relevance</option>
+            <option value="pL">Price: Low→High</option>
+            <option value="pH">Price: High→Low</option>
+            <option value="rat">Highest Rated</option>
+          </select>
+        </div>
+      </aside>
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+          <span id="v-count" style="font-size:14px;color:var(--t2)"></span>
+        </div>
+        <div class="vp-grid" id="venues-grid"></div>
+      </div>
+    </div>
+    <div id="venues-footer"></div>
+  </div>
+</div>
+
+<!-- ══════════ DETAIL PAGE ══════════ -->
+<div class="page" id="pg-detail">
+  <div class="dp" id="dp-content"></div>
+  <div id="detail-footer"></div>
+</div>
+
+<!-- ══════════ PAYMENT PAGE ══════════ -->
+<div class="page" id="pg-payment">
+  <div class="pay-pg">
+    <div class="pay-in">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;cursor:pointer;padding-top:10px" onclick="showPage('detail')">
+        <span style="font-size:22px">←</span><span style="font-size:14px;font-weight:600;color:var(--t2)">Back to venue</span>
+      </div>
+      <div class="pay-grid">
+        <div>
+          <div class="pay-card">
+            <div class="pay-ch">💳 Payment Method</div>
+            <div class="pay-cb">
+              <div class="pay-methods">
+                <div class="pm on" id="pm-card" onclick="setPM('card')">💳 Card</div>
+                <div class="pm" id="pm-upi" onclick="setPM('upi')">📱 UPI</div>
+                <div class="pm" id="pm-nb" onclick="setPM('nb')">🏦 Net Banking</div>
+                <div class="pm" id="pm-wal" onclick="setPM('wal')">👜 Wallet</div>
+              </div>
+              <div id="pf-card">
+                <div class="pay-field"><label class="pay-label">Card Number</label><input class="pay-inp" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>
+                <div class="pay-row-2">
+                  <div class="pay-field"><label class="pay-label">Expiry</label><input class="pay-inp" type="text" placeholder="MM/YY" maxlength="5" oninput="fmtExp(this)"></div>
+                  <div class="pay-field"><label class="pay-label">CVV</label><input class="pay-inp" type="password" placeholder="•••" maxlength="3"></div>
+                </div>
+                <div class="pay-field"><label class="pay-label">Name on Card</label><input class="pay-inp" type="text" placeholder="Your full name"></div>
+              </div>
+              <div id="pf-upi" style="display:none">
+                <div class="pay-field"><label class="pay-label">UPI ID</label><input class="pay-inp" type="text" placeholder="yourname@paytm"></div>
+                <div class="upi-g" style="margin-top:12px">
+                  <div class="upi-o" onclick="this.classList.toggle('on')">GPay</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">PhonePe</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Paytm</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">BHIM</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Amazon</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Others</div>
+                </div>
+              </div>
+              <div id="pf-nb" style="display:none">
+                <div class="pay-field"><label class="pay-label">Select Bank</label>
+                  <select class="pay-inp" style="cursor:pointer">
+                    <option>SBI</option><option>HDFC Bank</option><option>ICICI Bank</option>
+                    <option>Axis Bank</option><option>Kotak Mahindra</option><option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div id="pf-wal" style="display:none">
+                <div class="upi-g">
+                  <div class="upi-o on">Paytm</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">PhonePe</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Ola Money</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Freecharge</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Mobikwik</div>
+                  <div class="upi-o" onclick="this.classList.toggle('on')">Amazon</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pay-card">
+            <div class="pay-ch">📋 Booking Contact</div>
+            <div class="pay-cb">
+              <div class="pay-row-2">
+                <div class="pay-field"><label class="pay-label">Full Name</label><input class="pay-inp" type="text" id="pay-name" placeholder="Your name"></div>
+                <div class="pay-field"><label class="pay-label">Mobile</label><input class="pay-inp" type="tel" placeholder="+91 98765 43210"></div>
+              </div>
+              <div class="pay-field"><label class="pay-label">Email</label><input class="pay-inp" type="email" placeholder="you@example.com"></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="pay-sum">
+            <div class="pay-sh">📋 Booking Summary</div>
+            <div class="pay-sb">
+              <div class="pay-sim"><img id="pay-img" src="" alt=""></div>
+              <div class="pay-sn" id="pay-vn"></div>
+              <div class="pay-sl" id="pay-vl"></div>
+              <div class="pay-sr"><span>Date</span><span id="pay-dt">—</span></div>
+              <div class="pay-sr"><span>Slots</span><span id="pay-sl2">—</span></div>
+              <div class="pay-sr"><span>Duration</span><span id="pay-dur">—</span></div>
+              <div class="pay-sr"><span>Subtotal</span><span id="pay-sub">₹0</span></div>
+              <div class="pay-sr"><span>Booking Fee</span><span>₹0</span></div>
+              <div class="pay-sr"><span>Total</span><span id="pay-tot">₹0</span></div>
+              <button class="pay-now" onclick="procPay()">🔒 Pay Securely</button>
+              <p class="pay-sec">🔐 256-bit SSL encrypted</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CONFIRM PAGE ══════════ -->
+<div class="page" id="pg-confirm" style="padding-top:64px">
+  <div class="conf-pg">
+    <div class="conf-card">
+      <div class="conf-ico">✅</div>
+      <h1 class="conf-h">Turf Booked Successfully!</h1>
+      <p class="conf-sub">Your slot is confirmed. See you on the field! ⚽<br>Confirmation sent to your email & SMS.</p>
+      <div class="conf-bid" id="conf-bid">DT-000000</div>
+      <div class="conf-det">
+        <div class="conf-row"><span class="conf-lbl">🏟️ Venue</span><span class="conf-val" id="cf-v">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">📍 Location</span><span class="conf-val" id="cf-l">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">📅 Date</span><span class="conf-val" id="cf-d">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">🕐 Slots</span><span class="conf-val" id="cf-s">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">⏱️ Duration</span><span class="conf-val" id="cf-dur">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">🏅 Sport</span><span class="conf-val" id="cf-sp">—</span></div>
+        <div class="conf-row"><span class="conf-lbl">💰 Amount Paid</span><span class="conf-val price" id="cf-amt">—</span></div>
+      </div>
+      <div class="conf-acts">
+        <button class="conf-dl" onclick="dlReceipt()">📄 Receipt</button>
+        <button class="conf-hm" onclick="goHome()">🏠 Back to Home</button>
+      </div>
+      <p style="margin-top:18px;font-size:12px;color:var(--t3)">Queries? Call: +91 83692 53612 | support@divyamturfs.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ LOGIN PAGE ══════════ -->
+<div class="page" id="pg-login">
+  <div class="auth-pg">
+    <div class="auth-card">
+      <div class="auth-logo"><div class="ico">⚽</div><span>Divyam <em>Turfs</em></span></div>
+      <h2 class="auth-h">Welcome back 👋</h2>
+      <p class="auth-sub">Sign in to manage your bookings and discover new venues.</p>
+      <button class="goog-btn" onclick="toast('Google login coming soon!')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66 2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Continue with Google
+      </button>
+      <div class="auth-div"><span>or sign in with email</span></div>
+      <div class="auth-f"><label class="auth-lbl">Email</label><input class="auth-inp" type="email" id="l-em" placeholder="you@example.com"><div class="auth-er" id="l-em-e">Enter a valid email address</div></div>
+      <div class="auth-f">
+        <label class="auth-lbl">Password</label>
+        <div class="pw-wrap"><input class="auth-inp" type="password" id="l-pw" placeholder="Your password" style="padding-right:48px"><button class="pw-eye" type="button" onclick="togglePw('l-pw',this)">👁️</button></div>
+        <div class="auth-er" id="l-pw-e">Password must be at least 6 characters</div>
+      </div>
+      <div style="text-align:right;margin-bottom:8px"><span style="font-size:13px;color:var(--g);cursor:pointer;font-weight:600" onclick="toast('Password reset coming soon!')">Forgot password?</span></div>
+      <button class="auth-sub-btn" onclick="doLogin()">Sign In</button>
+      <p class="auth-sw">No account? <a onclick="showPage('signup')">Sign up free</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SIGNUP PAGE ══════════ -->
+<div class="page" id="pg-signup">
+  <div class="auth-pg">
+    <div class="auth-card">
+      <div class="auth-logo"><div class="ico">⚽</div><span>Divyam <em>Turfs</em></span></div>
+      <h2 class="auth-h">Create Account 🎉</h2>
+      <p class="auth-sub">Join 15,000+ players booking Mumbai's best turfs.</p>
+      <button class="goog-btn" onclick="toast('Google signup coming soon!')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66 2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        Continue with Google
+      </button>
+      <div class="auth-div"><span>or sign up with email</span></div>
+      <div class="auth-f"><label class="auth-lbl">Full Name</label><input class="auth-inp" type="text" id="s-nm" placeholder="Your full name"><div class="auth-er" id="s-nm-e">Name is required</div></div>
+      <div class="auth-f"><label class="auth-lbl">Email</label><input class="auth-inp" type="email" id="s-em" placeholder="you@example.com"><div class="auth-er" id="s-em-e">Enter a valid email</div></div>
+      <div class="auth-f"><label class="auth-lbl">Mobile</label><input class="auth-inp" type="tel" id="s-ph" placeholder="+91 98765 43210"><div class="auth-er" id="s-ph-e">Enter a valid mobile number</div></div>
+      <div class="auth-f">
+        <label class="auth-lbl">Password</label>
+        <div class="pw-wrap"><input class="auth-inp" type="password" id="s-pw" placeholder="Min. 6 characters" style="padding-right:48px"><button class="pw-eye" type="button" onclick="togglePw('s-pw',this)">👁️</button></div>
+        <div class="auth-er" id="s-pw-e">Password must be at least 6 characters</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;margin:12px 0">
+        <input type="checkbox" id="s-terms" style="margin-top:2px;accent-color:var(--g);width:16px;height:16px">
+        <label for="s-terms" style="font-size:13px;color:var(--t2)">I agree to the <span style="color:var(--g);cursor:pointer;font-weight:600">Terms</span> and <span style="color:var(--g);cursor:pointer;font-weight:600">Privacy Policy</span></label>
+      </div>
+      <button class="auth-sub-btn" onclick="doSignup()">Create Account</button>
+      <p class="auth-sw">Already have an account? <a onclick="showPage('login')">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT PAGE ══════════ -->
+<div class="page" id="pg-about">
+  <div class="about-pg">
+    <div class="about-hero">
+      <div class="about-hero-content">
+        <div class="sec-label" style="display:inline-flex;background:rgba(22,163,74,0.18);border:1px solid rgba(22,163,74,0.4);color:#86efac;margin-bottom:16px">ℹ️ Our Story</div>
+        <h1>About Divyam <em>Turfs</em> Booking</h1>
+        <p>Making sports booking simple and accessible in Mumbai</p>
+      </div>
+    </div>
+    <div class="about-body">
+      <!-- Story -->
+      <div class="about-story">
+        <div class="about-story-img">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=85" alt="Football turf" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&q=85'">
+        </div>
+        <div class="about-story-txt">
+          <div class="sec-label">Our Story</div>
+          <h2>Built From a Real Problem</h2>
+          <p>Finding a good turf in Mumbai shouldn't take 2 hours of calls and cancelled WhatsApp messages. As college students who played football every weekend, we faced this frustration firsthand.</p>
+          <p>Divyam Turfs started as a college project with one simple goal: bring all Mumbai's best sports venues into one clean, easy-to-use platform where you can browse, compare, and book instantly.</p>
+          <p>Today, we've partnered with 55+ premium venues across Mumbai — from Andheri to Navi Mumbai — and helped over 15,000 players book the perfect slot without any hassle.</p>
+          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap">
+            <button onclick="doSearch()" style="background:var(--g);color:#fff;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:800;border:none;cursor:pointer;transition:all 0.2s">Find a Turf →</button>
+            <button onclick="showPage('contact')" style="background:transparent;color:var(--g);padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;border:2px solid var(--g);cursor:pointer;transition:all 0.2s">Contact Us</button>
+          </div>
+        </div>
+      </div>
+      <!-- Values -->
+      <div style="margin-bottom:56px">
+        <div style="text-align:center;margin-bottom:36px">
+          <div class="sec-label" style="display:inline-flex">💡 Our Values</div>
+          <h2 class="sec-h" style="margin-top:10px">What We Stand For</h2>
+        </div>
+        <div class="about-vals">
+          <div class="aval"><div class="aval-ico">🎯</div><div class="aval-h">Simplicity First</div><p class="aval-p">Booking a turf should be as easy as ordering food. We cut the complexity so you focus on the game.</p></div>
+          <div class="aval"><div class="aval-ico">🤝</div><div class="aval-h">Community Driven</div><p class="aval-p">We partner with local venues to support Mumbai's sports ecosystem and grassroots players.</p></div>
+          <div class="aval"><div class="aval-ico">🔒</div><div class="aval-h">Trust & Transparency</div><p class="aval-p">No hidden fees, no bait-and-switch. What you see is exactly what you pay.</p></div>
+        </div>
+      </div>
+      <!-- Team -->
+      <div class="about-team">
+        <h2>Meet the Team</h2>
+        <p>A passionate group of sports lovers and tech enthusiasts based in Mumbai</p>
+        <div class="team-grid">
+          <div class="team-card"><div class="team-av" style="background:#059669">D</div><div class="team-nm">Divyam Shah</div><div class="team-role">Founder & CEO</div><p class="team-bio">Football fanatic. Built Divyam Turfs because finding a good ground was too painful.</p></div>
+          <div class="team-card"><div class="team-av" style="background:#7c3aed">R</div><div class="team-nm">Rahul Nair</div><div class="team-role">Head of Partnerships</div><p class="team-bio">Manages all 55+ venue relationships. Badminton state-level player.</p></div>
+          <div class="team-card"><div class="team-av" style="background:#dc2626">P</div><div class="team-nm">Priya Joshi</div><div class="team-role">Product & Design</div><p class="team-bio">Designed every pixel of this platform. Cricket enthusiast and UI/UX nerd.</p></div>
+          <div class="team-card"><div class="team-av" style="background:#d97706">A</div><div class="team-nm">Aryan Mehta</div><div class="team-role">Tech Lead</div><p class="team-bio">Built all the backend magic. Loves playing 5-a-side every Saturday morning.</p></div>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div class="about-stats">
+        <div class="astat"><div class="astat-n">55+</div><div class="astat-l">Verified Venues</div></div>
+        <div class="astat"><div class="astat-n">15K+</div><div class="astat-l">Happy Players</div></div>
+        <div class="astat"><div class="astat-n">6+</div><div class="astat-l">Sports Covered</div></div>
+        <div class="astat"><div class="astat-n">4.8★</div><div class="astat-l">Average Rating</div></div>
+      </div>
+    </div>
+    <div id="about-footer"></div>
+  </div>
+</div>
+
+<!-- ══════════ CONTACT PAGE ══════════ -->
+<div class="page" id="pg-contact">
+  <div class="contact-pg">
+    <div class="contact-hero">
+      <div class="contact-hero-in">
+        <div class="sec-label" style="display:inline-flex;background:rgba(22,163,74,0.18);border:1px solid rgba(22,163,74,0.4);color:#86efac;margin-bottom:14px">📞 Get In Touch</div>
+        <h1>Let's Talk <em>Sports</em></h1>
+        <p>Have questions, feedback, or want to list your venue? We'd love to hear from you. Our team responds within 2 hours.</p>
+      </div>
+    </div>
+
+    <div class="contact-body" style="max-width:1240px;margin:0 auto;padding:64px 40px">
+      <div class="contact-info">
+        <h2>We're Here to Help</h2>
+        <p>Whether you're a player looking for support or a venue owner wanting to partner with us, reach out via any channel below.</p>
+        <div class="ci-items">
+          <div class="ci-item">
+            <div class="ci-ico">📍</div>
+            <div class="ci-txt">
+              <h4>Our Office</h4>
+              <p>Andheri West, Mumbai — 400058<br>Maharashtra, India</p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">📧</div>
+            <div class="ci-txt">
+              <h4>Email Us</h4>
+              <p><a href="mailto:support@divyamturfs.com">support@divyamturfs.com</a><br>We reply within 2 hours on weekdays.</p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">📞</div>
+            <div class="ci-txt">
+              <h4>Call / WhatsApp</h4>
+              <p><a href="tel:+918369253612">+91 83692 53612</a><br>Available 9AM – 9PM, Mon–Sat</p>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-ico">🕐</div>
+            <div class="ci-txt">
+              <h4>Support Hours</h4>
+              <p>Mon–Sat: 9:00 AM – 9:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;font-weight:700;color:var(--t2);margin-bottom:12px">Follow us</p>
+        <div class="contact-social">
+          <div class="csoc" onclick="toast('Instagram coming soon!')">📸</div>
+          <div class="csoc" onclick="toast('Facebook coming soon!')">📘</div>
+          <div class="csoc" onclick="toast('Twitter coming soon!')">🐦</div>
+          <div class="csoc" onclick="toast('YouTube coming soon!')">▶️</div>
+          <div class="csoc" onclick="toast('WhatsApp coming soon!')">💬</div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <h3 class="cf-h">Send a Message</h3>
+        <p class="cf-sub">Fill the form and we'll get back to you within 2 hours.</p>
+        <div class="cf-row">
+          <div class="cf-field"><label class="cf-lbl">Full Name *</label><input class="cf-inp" type="text" id="cf-name" placeholder="Your full name"></div>
+          <div class="cf-field"><label class="cf-lbl">Email *</label><input class="cf-inp" type="email" id="cf-email" placeholder="you@example.com"></div>
+        </div>
+        <div class="cf-field"><label class="cf-lbl">Mobile Number</label><input class="cf-inp" type="tel" id="cf-phone" placeholder="+91 98765 43210"></div>
+        <div class="cf-field">
+          <label class="cf-lbl">Subject *</label>
+          <select class="cf-inp" id="cf-subject" style="cursor:pointer">
+            <option>General Inquiry</option>
+            <option>Booking Issue</option>
+            <option>Payment Problem</option>
+            <option>List My Venue</option>
+            <option>Partnership Proposal</option>
+            <option>Feedback / Suggestion</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="cf-field"><label class="cf-lbl">Message *</label><textarea class="cf-ta" id="cf-msg" placeholder="Tell us how we can help you..."></textarea></div>
+        <button class="cf-submit" onclick="sendMsg()">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          Send Message
+        </button>
+        <p class="cf-note">🔒 Your information is kept private and secure.</p>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="contact-map" style="padding:0 40px 60px;max-width:1240px;margin:0 auto">
+      <h3>Find Us in Mumbai</h3>
+      <div class="map-mock">
+        <div class="map-pin">📍</div>
+        <div class="map-addr">Divyam Turfs Office</div>
+        <div class="map-sub">Andheri West, Mumbai — 400058</div>
+        <button onclick="toast('Google Maps integration coming soon!')" style="background:var(--g);color:#fff;padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;margin-top:8px;transition:all 0.2s">Open in Google Maps</button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-sec">
+      <div class="faq-in">
+        <h2 class="faq-h">Frequently Asked Questions</h2>
+        <p class="faq-sub">Quick answers to common questions</p>
+        <div id="faq-list"></div>
+      </div>
+    </section>
+
+    <div id="contact-footer"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// REAL TURF IMAGES — verified Unsplash IDs
+// Each venue gets unique, sport-appropriate images
+// ══════════════════════════════════════════
+
+// Curated real turf/sports images — all verified working
+const SPORT_IMGS = {
+  Football: [
+    'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=700&q=80',
+    'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700&q=80',
+    'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=700&q=80',
+    'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=700&q=80',
+    'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=700&q=80',
+    'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=700&q=80',
+    'https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?w=700&q=80',
+    'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=700&q=80',
+  ],
+  Cricket: [
+    'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=700&q=80',
+    'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=700&q=80',
+    'https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?w=700&q=80',
+    'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=700&q=80',
+  ],
+  Badminton: [
+    'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=700&q=80',
+    'https://images.unsplash.com/photo-1616886154845-f75659d1765c?w=700&q=80',
+    'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80',
+  ],
+  Tennis: [
+    'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=700&q=80',
+    'https://images.unsplash.com/photo-1542144582-1ba00456b5e3?w=700&q=80',
+    'https://images.unsplash.com/photo-1568241840875-5427ee5e0dbc?w=700&q=80',
+  ],
+  Basketball: [
+    'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=700&q=80',
+    'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=700&q=80',
+    'https://images.unsplash.com/photo-1518339049960-c1c53da4b498?w=700&q=80',
+  ],
+  Pickleball: [
+    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80',
+    'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=700&q=80',
+    'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=700&q=80',
+  ],
+};
+
+// Get unique images for a venue — 4 DIFFERENT images for gallery
+function getGallery(sports, seed) {
+  const primarySport = sports[0];
+  const pool = SPORT_IMGS[primarySport] || SPORT_IMGS.Football;
+  // Pick 4 unique images from pool using seed
+  const imgs = [];
+  for(let i=0;i<4;i++) {
+    imgs.push(pool[(seed+i) % pool.length]);
+  }
+  // Ensure no duplicates
+  const unique = [...new Set(imgs)];
+  while(unique.length < 3) unique.push(pool[unique.length % pool.length]);
+  return unique;
+}
+function getCardImg(sports, seed) {
+  const pool = SPORT_IMGS[sports[0]] || SPORT_IMGS.Football;
+  return pool[seed % pool.length];
+}
+
+const AM_ICO = {'Changing Room':'🚿','Floodlights':'💡','Parking':'🅿️','Drinking Water':'🚰','Equipment':'👟','Canteen':'☕','Washrooms':'🚻','WiFi':'📶','First Aid':'🩺','AC Lobby':'❄️'};
+const TIMES = ['06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 PM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM'];
+
+// Venue reviews data
+const REVIEWS_DATA = {
+  default:[
+    {nm:'Vikram Singh',av:'V',col:'#059669',stars:5,dt:'2 days ago',txt:'Excellent turf! Well maintained with great lighting. Booking was super easy. Highly recommend.'},
+    {nm:'Sneha Patil',av:'S',col:'#7c3aed',stars:5,dt:'5 days ago',txt:'Love this venue. The surface is perfect, changing rooms are clean. Will definitely come back!'},
+    {nm:'Karan Mehta',av:'K',col:'#dc2626',stars:4,dt:'1 week ago',txt:'Great location and nice turf quality. Parking could be better but overall a fantastic experience.'},
+    {nm:'Ritu Sharma',av:'R',col:'#d97706',stars:5,dt:'2 weeks ago',txt:'We had our corporate tournament here. The staff was very helpful. Top quality facility!'},
+    {nm:'Aditya Nair',av:'A',col:'#0284c7',stars:4,dt:'3 weeks ago',txt:'Very professional setup. Slots are easy to book online. Floodlights work perfectly for evening games.'},
+  ]
+};
+
+// Build 55 turfs
+function mkT(id,name,area,sports,price,rating,reviews,excl,disc,imgSeed,about,am,rules) {
+  const gallery = getGallery(sports, imgSeed);
+  return {
+    id, name, area,
+    loc:`Mumbai · ${area}`,
+    addr:`${10+id} Sports Lane, Near ${['Station','Highway','Garden','Mall','School'][id%5]}, ${area}, Mumbai - ${400001+Math.floor(id/5)*1}`,
+    sports: Array.isArray(sports)?sports:[sports],
+    price, rating, reviews, excl, disc,
+    img: getCardImg(sports, imgSeed),
+    gallery,
+    about, amenities:am.split(','), rules:rules.split(','),
+    featured: rating>=4.7,
+    reviews_data: [...REVIEWS_DATA.default]
+  };
+}
+
+const TURFS = [
+  mkT(1,'Divyam Arena | Andheri West','Andheri West',['Football','Cricket'],800,4.8,214,true,null,0,'Premium synthetic turf with FIFA-quality artificial grass and LED floodlights. Located in heart of Andheri West — perfect for 5v5 and 7v7 football.','Changing Room,Floodlights,Parking,Drinking Water,Equipment,Canteen','No metal spiked shoes,Booking required 1 hr in advance,No outside food,Max 14 players'),
+  mkT(2,'Andheri Sports Hub','Andheri East',['Football','Badminton'],650,4.4,178,false,null,1,'Multi-sport venue with two turfs and four badminton courts. Easy access from Andheri East station.','Changing Room,Floodlights,Parking,Drinking Water','Soft-soled shoes only,Pre-booking mandatory'),
+  mkT(3,'Strike Zone | Lokhandwala','Andheri West',['Football'],750,4.6,203,true,null,2,'Premium 5-a-side turf in Lokhandwala Complex. State-of-the-art synthetic grass with drainage system.','Changing Room,Floodlights,Drinking Water,Equipment','No metal studs,Book 2 hrs in advance'),
+  mkT(4,'Andheri Cricket Nets','Andheri East',['Cricket'],500,4.3,89,false,'10',3,'Professional cricket practice nets with bowling machines. Perfect for team practice sessions.','Floodlights,Parking,Drinking Water,Equipment','Helmet mandatory for batting,Equipment available on request'),
+  mkT(5,'Play More Arena','Andheri West',['Football','Basketball','Cricket'],900,4.7,312,true,null,4,'Mumbai\'s largest multi-sport complex in Andheri. 3 football turfs, 2 basketball courts & cricket nets.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,WiFi,AC Lobby','Advance booking required,No outside food,Max 16 players'),
+  mkT(6,'Green Goal | Bandra West','Bandra West',['Football','Badminton'],1200,4.6,189,false,'15',5,'Top-grade synthetic turf in Bandra West. Favourite of professionals and weekend warriors alike.','Changing Room,Floodlights,Parking,Drinking Water,Equipment','No metal studs,Advance booking mandatory'),
+  mkT(7,'Bandra Turf Academy','Bandra West',['Football'],1400,4.9,267,true,null,6,'FIFA-standard football academy turf. Used for Santacruz FC training. Open for public on weekends.','Changing Room,Floodlights,Parking,Drinking Water,Equipment,First Aid','Soft-ground cleats only,Coaching available weekdays'),
+  mkT(8,'Linking Road Sports','Bandra West',['Badminton','Tennis'],800,4.5,143,false,null,0,'Modern sports complex near Linking Road with 4 badminton courts and 2 tennis courts.','Changing Room,Parking,Drinking Water,Equipment','Badminton shoes required,Booking mandatory'),
+  mkT(9,'Bandra East Turfs','Bandra East',['Football','Cricket'],600,4.3,98,false,'20',1,'Affordable turf in Bandra East near BKC. Popular with young professionals and college groups.','Floodlights,Parking,Drinking Water','No smoking,Advance booking required'),
+  mkT(10,'BKC Sports Arena','Bandra East',['Football','Pickleball'],1100,4.7,201,true,null,2,'Premium corporate-friendly venue near BKC with three turfs and pickleball courts.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,WiFi','Corporate packages available,Pre-booking only'),
+  mkT(11,'PowerPlay Arena | Powai','Powai',['Football','Cricket','Basketball'],700,4.5,302,true,null,3,'Popular multi-sport arena near IIT Powai and tech parks. 24/7 online booking available.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Soft-soled shoes only,Children under 12 supervised'),
+  mkT(12,'Powai Lake Turfs','Powai',['Football'],850,4.4,167,false,null,4,'Beautiful location near Powai Lake. 2 turfs with scenic views. Popular for morning sessions.','Changing Room,Floodlights,Parking,Drinking Water','Rubber studs only,Booking required'),
+  mkT(13,'Hiranandani Sports Club','Powai',['Tennis','Badminton','Basketball'],950,4.8,234,true,null,0,'World-class sports club in Hiranandani estate — tennis, badminton and basketball.','Changing Room,Parking,Drinking Water,Equipment,Canteen,AC Lobby','Member or day-pass required,Proper attire mandatory'),
+  mkT(14,'Galleria Sports Hub','Powai',['Football','Pickleball'],750,4.6,189,true,'10',5,'Modern sports complex in Galleria Mall area. Popular for after-office sports sessions.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Booking required,Sports attire mandatory'),
+  mkT(15,'Kick Zone | Dadar West','Dadar',['Football','Badminton'],600,4.3,156,false,null,2,'Central Mumbai\'s go-to affordable football destination near Dadar station.','Floodlights,Drinking Water,Equipment,Changing Room','No spiked shoes,Pre-booking required'),
+  mkT(16,'Shivaji Park Sports','Dadar',['Football','Cricket'],500,4.5,203,false,null,6,'Historic sports complex near Shivaji Park. Multiple grounds available.','Changing Room,Floodlights,Parking,Drinking Water','Advance booking required,Proper attire needed'),
+  mkT(17,'Champions Ground | Borivali','Borivali East',['Football','Cricket'],500,4.7,278,true,'20',3,'Massive well-lit turf with expert coaching on weekends. Best value in Western suburbs.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,Equipment','Advance booking required,Cancellation 2 hrs before slot'),
+  mkT(18,'Borivali Sports Academy','Borivali West',['Football','Badminton'],600,4.5,167,false,null,4,'Well-maintained synthetic turf with professional coaching. Popular with youth academies.','Changing Room,Floodlights,Parking,Drinking Water','Academy schedule on website,Coaching available'),
+  mkT(19,'Escape Sports Arena','Borivali East',['Football','Pickleball','Basketball'],800,4.6,201,true,null,5,'Premium multi-sport venue with 3 turfs and dedicated pickleball courts.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,WiFi','Pre-booking mandatory,Proper attire required'),
+  mkT(20,'SportFit Arena | Malad','Malad West',['Football','Pickleball','Badminton'],650,4.4,121,false,null,6,'Modern multi-sport venue in Malad West. Football, pickleball and badminton under one roof.','Changing Room,Floodlights,Parking,Drinking Water','No outside equipment,Clean shoes mandatory'),
+  mkT(21,'Inorbit Sports Complex','Malad West',['Football','Tennis','Badminton'],900,4.7,234,true,null,0,'Premium complex near Inorbit Mall. Top-quality facilities for multiple sports.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,AC Lobby','Member or day-pass,Advanced booking mandatory'),
+  mkT(22,'Goal Rush | Ghatkopar','Ghatkopar West',['Football','Cricket'],750,4.2,98,false,null,1,'Weekend tournaments with prizes in Ghatkopar. A vibrant football community.','Floodlights,Parking,Drinking Water,Equipment','No spiked shoes,Teams must register before play'),
+  mkT(23,'Ghatkopar Sports City','Ghatkopar East',['Football','Badminton','Basketball'],700,4.5,167,false,null,2,'Large sports complex. Great for large group bookings and corporate events.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Advance booking required,Corporate packages available'),
+  mkT(24,'Turf Empire | Chembur','Chembur',['Football','Cricket','Badminton'],900,4.6,167,true,null,3,'Elite sports venue with three simultaneous turfs. Ideal for corporate events and tournaments.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,Equipment','Prior booking mandatory,No refunds for no-shows'),
+  mkT(25,'RCF Colony Sports Arena','Chembur',['Football','Badminton','Tennis'],800,4.7,198,true,null,4,'Exclusive sports arena in RCF Colony with excellent facilities and well-maintained courts.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,First Aid','Advance booking mandatory'),
+  mkT(26,'Pro Turf Club | Vashi','Navi Mumbai',['Football','Basketball','Pickleball'],550,4.9,341,true,'15',5,'Navi Mumbai\'s highest-rated venue! 4 courts, dedicated coaching staff and a sports café.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,Equipment,WiFi','Booking mandatory,Clean footwear required,No smoking'),
+  mkT(27,'Navi Mumbai Sports Zone','Navi Mumbai',['Football','Cricket'],500,4.5,178,false,null,6,'Large facility with football turf and cricket nets. Popular for school tournaments.','Changing Room,Floodlights,Parking,Drinking Water','School events discounted,Advance booking required'),
+  mkT(28,'Kharghar Sports Complex','Navi Mumbai',['Football','Tennis','Badminton'],600,4.6,201,false,null,0,'Well-equipped complex in Kharghar with multiple sport options at reasonable prices.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Booking required,Sports attire mandatory'),
+  mkT(29,'ThunderKick | Thane West','Thane West',['Football','Cricket'],480,4.4,203,false,'20',1,'Budget-friendly premium turf in Thane. Special monthly packages for regular teams.','Floodlights,Parking,Drinking Water,Equipment','Advance booking only,Carry ID proof for first booking'),
+  mkT(30,'Thane Sports Complex','Thane West',['Football','Badminton','Cricket'],600,4.5,167,false,null,2,'Comprehensive sports complex in Thane West catering to all age groups.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Booking required,Proper attire'),
+  mkT(31,'Thane Creek Arena','Thane East',['Football','Basketball'],700,4.6,178,true,null,3,'Premium sports arena near Thane Creek with scenic views and modern lighting.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Advance booking mandatory,Corporate packages available'),
+  mkT(32,'Worli Sports Complex','Worli',['Football','Cricket','Tennis'],1100,4.8,234,true,null,4,'Elite sports complex in Worli. Popular with business executives and sports enthusiasts.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,AC Lobby,WiFi,First Aid','Advance booking required,Dress code enforced,No outside food'),
+  mkT(33,'Juhu Beach Sports','Juhu',['Football','Badminton','Cricket'],900,4.7,212,true,null,5,'Premium complex near Juhu Beach. After your game, enjoy the beach!','Changing Room,Floodlights,Parking,Drinking Water,Canteen,WiFi','Advance booking mandatory,Corporate packages available'),
+  mkT(34,'Versova Sports Club','Versova',['Football','Pickleball','Tennis'],850,4.6,178,false,null,6,'Established sports club in Versova with excellent turf and court facilities.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Club membership or day pass,Booking required'),
+  mkT(35,'Goregaon Sports Club','Goregaon',['Football','Tennis','Badminton'],800,4.6,189,false,null,0,'Established club in Goregaon with excellent tennis and badminton facilities.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,AC Lobby','Membership available,Day passes welcome'),
+  mkT(36,'Film City Turf','Goregaon',['Football','Cricket'],700,4.5,167,true,null,1,'Unique turf near Film City. Popular with media professionals for weekend games.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Weekends get booked fast,Advance booking critical'),
+  mkT(37,'Santacruz Turf Arena','Andheri West',['Football','Cricket'],700,4.5,167,false,null,2,'Well-located turf in Santacruz. Popular with local football clubs.','Changing Room,Floodlights,Parking,Drinking Water','Club bookings get priority,Advance booking required'),
+  mkT(38,'Vile Parle Sports','Andheri East',['Football','Badminton','Tennis'],750,4.6,189,false,null,3,'Comprehensive sports complex in Vile Parle. Good transport links.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','Sports attire mandatory,No metal studs'),
+  mkT(39,'Kurla Sports Arena','Kurla',['Football','Cricket'],500,4.2,112,false,null,4,'Accessible sports venue in Kurla near BKC. Affordable rates.','Floodlights,Parking,Drinking Water','Advance booking required,No alcohol near facility'),
+  mkT(40,'Mahalaxmi Sports Hub','Worli',['Football','Badminton'],800,4.5,156,false,null,5,'Good quality synthetic turf near Mahalaxmi racecourse. Premium at reasonable rates.','Changing Room,Floodlights,Parking,Drinking Water','Booking required,Sports attire mandatory'),
+  mkT(41,'Powai Turf Zone','Powai',['Football'],780,4.5,143,false,null,6,'Excellent turf with good parking and modern facilities near Powai.','Changing Room,Floodlights,Parking,Drinking Water','Booking required,Proper sports shoes'),
+  mkT(42,'Dadar Cricket Hub','Dadar',['Cricket'],450,4.1,92,false,null,0,'Dedicated cricket venue with professional pitch preparation.','Floodlights,Parking,Drinking Water,Equipment','Helmet mandatory for batsmen,League bookings get priority'),
+  mkT(43,'National Park Turfs','Borivali West',['Football','Cricket'],400,4.3,134,false,null,1,'Budget-friendly turf near Sanjay Gandhi National Park. Natural ambiance.','Floodlights,Parking,Drinking Water','Weekends get booked fast,Advance booking strongly recommended'),
+  mkT(44,'Malad Sports Hub','Malad East',['Football','Cricket'],550,4.3,98,false,'15',2,'Affordable and accessible sports hub in Malad East. 2 turfs available.','Floodlights,Parking,Drinking Water,Equipment','Advance booking required,Max 14 players per turf'),
+  mkT(45,'Ghatkopar Victory Turf','Ghatkopar West',['Football'],650,4.4,143,false,'10',3,'Well-maintained 5-a-side and 7-a-side turfs. Hosted 50+ local league matches.','Changing Room,Floodlights,Parking,Drinking Water','Cleats mandatory,No barefoot play'),
+  mkT(46,'Chembur Sports Ground','Chembur',['Football','Cricket'],650,4.3,112,false,null,4,'Community-run facility with natural grass cricket pitch and synthetic football turf.','Floodlights,Parking,Drinking Water','Community events get priority,Advance booking required'),
+  mkT(47,'Belapur Sports Hub','Navi Mumbai',['Football','Cricket','Basketball'],700,4.4,156,false,'10',5,'Multi-sport hub in CBD Belapur catering to corporate professionals.','Changing Room,Floodlights,Parking,Drinking Water,Canteen,WiFi','Corporate packages available,Pre-booking preferred'),
+  mkT(48,'Nerul Ground Sports','Navi Mumbai',['Football'],450,4.3,89,false,null,6,'Affordable football ground in Nerul with natural grass. Great for school teams.','Floodlights,Parking,Drinking Water','No metal studs on natural grass,Advance booking required'),
+  mkT(49,'Kolshet Sports Hub','Thane',['Football','Pickleball'],550,4.4,134,false,null,0,'Upcoming sports destination in Kolshet Road. New facilities with great infrastructure.','Changing Room,Floodlights,Parking,Drinking Water','Early bird discounts available,Booking required'),
+  mkT(50,'Dombivli Sports','Thane East',['Football','Cricket','Basketball'],400,4.3,112,false,'10',1,'Popular facility serving Dombivli and Kalyan. Multiple sports at great prices.','Changing Room,Floodlights,Parking,Drinking Water,Canteen','School bookings get discount,Advance booking required'),
+  mkT(51,'LBS Marg Sports Hub','Kurla',['Football','Badminton'],600,4.4,143,false,'10',2,'Popular venue along LBS Marg with good connectivity. Professional synthetic turf.','Changing Room,Floodlights,Parking,Drinking Water','Booking required,Proper sports shoes'),
+  mkT(52,'Aarey Colony Sports','Goregaon',['Football'],400,4.3,98,false,null,3,'Budget-friendly turf near Aarey Colony. Natural ambiance for casual football.','Floodlights,Drinking Water,Parking','No metal spikes on natural turf,Advance booking required'),
+  mkT(53,'Mira Road Sports Arena','Borivali West',['Football','Cricket','Badminton'],450,4.4,134,false,null,4,'Large affordable facility in Mira Road. Great for residential communities and schools.','Changing Room,Floodlights,Parking,Drinking Water','Booking mandatory,No barefoot on turf'),
+  mkT(54,'Vasai Sports Hub','Borivali West',['Football'],350,4.2,78,false,null,5,'Most affordable turf in western suburbs. Simple but functional for budget players.','Floodlights,Parking,Drinking Water','Arrive 10 min early,Advance booking required'),
+  mkT(55,'Jogeshwari Turf Center','Andheri West',['Football','Cricket'],550,4.3,112,false,'15',6,'Budget-friendly turf in Jogeshwari. Good for teams seeking affordable practice.','Floodlights,Parking,Drinking Water','Advance booking required,Bring your own equipment'),
+];
+
+TURFS.forEach(v=>{
+  v.slots = TIMES.map((t,i)=>({time:t,avail:(v.id*7+i*3)%5!==0}));
+});
+
+// FAQ data
+const FAQS = [
+  {q:'How do I book a turf?',a:'Simply search for a venue by area and sport, click "View Details", select your date and time slots, and proceed to payment. The whole process takes under 2 minutes!'},
+  {q:'Can I cancel my booking?',a:'Yes! You can cancel up to 2 hours before your slot for a 100% refund. Cancellations made less than 2 hours before will not be eligible for a refund.'},
+  {q:'Is payment secure?',a:'Absolutely. We use 256-bit SSL encryption for all transactions. We support UPI, Credit/Debit Cards, Net Banking and Wallets.'},
+  {q:'How do I list my venue on Divyam Turfs?',a:'Contact us at support@divyamturfs.com or call +91 83692 53612. Our partnerships team will get back to you within 24 hours.'},
+  {q:'What if the turf is in poor condition when I arrive?',a:'Please take photos and contact us immediately at +91 83692 53612. We\'ll arrange a full refund or find you an alternative slot.'},
+  {q:'Are there any hidden charges?',a:'No hidden charges at all. The price shown is exactly what you pay — no booking fees, no taxes, no surprises.'},
+];
+
+// ══════════════════════
+// STATE
+// ══════════════════════
+let CUR_PAGE = 'home';
+let CUR_VENUE = null;
+let SEL_SLOTS = [];
+let CUR_USER = null;
+let LIKED = new Set();
+let homeResults = [];
+let sliderIdx = 0;
+
+// ══════════════════════
+// NAVIGATION
+// ══════════════════════
+function showPage(pg, vid) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+pg).classList.add('active');
+  window.scrollTo(0,0);
+  CUR_PAGE = pg;
+  setNavStyle(pg);
+  setNavActive(pg);
+  if(pg==='home') initHome();
+  if(pg==='venues') initVenues();
+  if(pg==='detail' && vid) initDetail(vid);
+  if(pg==='confirm') initConfirm();
+  if(pg==='about') initAbout();
+  if(pg==='contact') initContact();
+  closeMob();
+}
+function goHome(){showPage('home')}
+function goVenues(){showPage('venues')}
+function setNavStyle(pg) {
+  const n = document.getElementById('nav');
+  n.className = pg==='home' ? 'nav glass' : 'nav solid';
+}
+function setNavActive(pg) {
+  document.querySelectorAll('.nl').forEach(l=>l.classList.remove('act'));
+  const map = {home:'nl-home',venues:'nl-venues',about:'nl-about',contact:'nl-contact'};
+  if(map[pg]) document.getElementById(map[pg])?.classList.add('act');
+}
+
+// ══════════════════════
+// HELPERS
+// ══════════════════════
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+function starsHTML(r) {
+  const f=Math.floor(r),h=r%1>=0.5?1:0;
+  return '★'.repeat(f)+(h?'½':'')+'☆'.repeat(5-f-h);
+}
+function sortV(arr,s) {
+  const a=[...arr];
+  if(s==='pL')return a.sort((x,y)=>x.price-y.price);
+  if(s==='pH')return a.sort((x,y)=>y.price-x.price);
+  if(s==='rat')return a.sort((x,y)=>y.rating-x.rating);
+  return a;
+}
+function skels(n) {
+  return Array.from({length:n},()=>`<div class="sk"><div class="sk-img"></div><div class="sk-b"><div class="sk-l" style="width:70%"></div><div class="sk-l" style="width:50%"></div><div class="sk-l" style="width:60%"></div></div></div>`).join('');
+}
+function cardHTML(v) {
+  return `<div class="tc anim" onclick="showPage('detail',${v.id})">
+    <div class="tc-img">
+      <img src="${v.img}" alt="${v.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700&q=80'">
+      <div class="tc-ovl"></div>
+      <div class="tc-bdgs">
+        ${v.disc?`<span class="tbdg tbdg-dc">${v.disc}% OFF</span>`:''}
+        ${v.excl?`<span class="tbdg tbdg-ex">★ Exclusive</span>`:''}
+      </div>
+      <button class="tc-fav ${LIKED.has(v.id)?'liked':''}" id="fav${v.id}" onclick="event.stopPropagation();toggleFav(${v.id})" title="Save">♥</button>
+    </div>
+    <div class="tc-body">
+      <div class="tc-name">${v.name}</div>
+      <div class="tc-loc">📍 ${v.loc}</div>
+      <div class="tc-rat">
+        <span class="tc-stars">${starsHTML(v.rating)}</span>
+        <span class="tc-rs">${v.rating}</span>
+        <span class="tc-rc">(${v.reviews})</span>
+      </div>
+      <div class="tc-sports">${v.sports.slice(0,3).map(s=>`<span class="tc-sport">${s}</span>`).join('')}</div>
+    </div>
+    <div class="tc-foot">
+      <div class="tc-ams">${v.amenities.slice(0,3).map(a=>`<span class="tc-am">${AM_ICO[a]||'✓'}</span>`).join('')}</div>
+      <button class="tc-btn" onclick="event.stopPropagation();showPage('detail',${v.id})">View Details</button>
+    </div>
+  </div>`;
+}
+function toggleFav(id){
+  LIKED.has(id)?LIKED.delete(id):LIKED.add(id);
+  document.getElementById('fav'+id)?.classList.toggle('liked',LIKED.has(id));
+  toast(LIKED.has(id)?'❤️ Saved to favourites':'💔 Removed from favourites');
+}
+function getFooter(){
+  return `<footer class="footer">
+    <div class="footer-g">
+      <div>
+        <div class="f-logo"><div class="fli">⚽</div>Divyam <span>Turfs</span></div>
+        <p class="f-desc">Mumbai's most trusted turf booking platform. Find, compare and instantly book 55+ premium sports venues. No calls, just play.</p>
+        <div class="f-socs">
+          <div class="fsoc" onclick="toast('Instagram!')">📸</div>
+          <div class="fsoc" onclick="toast('Facebook!')">📘</div>
+          <div class="fsoc" onclick="toast('Twitter!')">🐦</div>
+          <div class="fsoc" onclick="toast('YouTube!')">▶️</div>
+        </div>
+      </div>
+      <div class="f-col"><h4>Quick Links</h4><ul>
+        <li onclick="goHome()">Home</li>
+        <li onclick="goVenues()">All Venues</li>
+        <li onclick="showPage('about')">About Us</li>
+        <li onclick="showPage('contact')">Contact</li>
+      </ul></div>
+      <div class="f-col"><h4>Sports</h4><ul>
+        <li>⚽ Football</li><li>🏏 Cricket</li>
+        <li>🏸 Badminton</li><li>🎾 Tennis</li>
+        <li>🏀 Basketball</li><li>🏓 Pickleball</li>
+      </ul></div>
+      <div class="f-col"><h4>Contact</h4>
+        <div class="f-contact">📍 Andheri West, Mumbai — 400058</div>
+        <div class="f-contact">📞 +91 83692 53612</div>
+        <div class="f-contact">✉️ support@divyamturfs.com</div>
+        <div class="f-contact">🕐 Open 6AM – 11PM Daily</div>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>© 2024 Divyam Turfs Booking. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Refund Policy</a></span>
+    </div>
+  </footer>`;
+}
+
+// ══════════════════════
+// HOME
+// ══════════════════════
+let homeInited = false;
+function initHome() {
+  document.getElementById('h-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('h-date').min = new Date().toISOString().split('T')[0];
+  if(!homeInited) {
+    const g = document.getElementById('featured-grid');
+    g.innerHTML = skels(6);
+    setTimeout(()=>{
+      const feat = TURFS.filter(v=>v.featured).slice(0,6);
+      g.innerHTML = feat.map(v=>cardHTML(v)).join('');
+      homeInited = true;
+    },500);
+    document.getElementById('home-footer').innerHTML = getFooter();
+  }
+}
+function doSearch() {
+  const loc = (document.getElementById('h-loc')?.value||'').trim().toLowerCase();
+  const sport = document.getElementById('h-sport')?.value||'';
+  let results = TURFS.filter(v=>{
+    if(loc && !v.loc.toLowerCase().includes(loc)&&!v.area.toLowerCase().includes(loc)&&!v.name.toLowerCase().includes(loc)) return false;
+    if(sport && !v.sports.includes(sport)) return false;
+    return true;
+  });
+  homeResults = results;
+  document.getElementById('search-results').style.display='block';
+  document.getElementById('featured-sec').style.display='none';
+  const tt = loc&&sport?`${sport} turfs near "${loc}"`:loc?`Turfs near "${loc}"`:sport?`${sport} turfs in Mumbai`:'All turfs in Mumbai';
+  document.getElementById('res-title').innerHTML = `${tt} — <span>${results.length} found</span>`;
+  document.getElementById('res-sub').textContent = 'Showing venues matching your search';
+  // pills
+  const sports = ['All',...new Set(TURFS.flatMap(v=>v.sports))];
+  document.getElementById('fpills').innerHTML = sports.map(s=>`<span class="fpill ${s==='All'&&!sport||s===sport?'on':''}" onclick="homeFilterSport('${s}',this)">${s==='All'?'All':s}</span>`).join('');
+  const grid = document.getElementById('results-grid');
+  grid.innerHTML = skels(Math.min(results.length,3));
+  setTimeout(()=>renderResults(results),450);
+  document.getElementById('search-results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderResults(r) {
+  if(r) homeResults=r;
+  const sorted = sortV(homeResults,document.getElementById('msort')?.value||'rel');
+  const grid = document.getElementById('results-grid');
+  if(!sorted.length){
+    grid.innerHTML=`<div class="empty"><div class="empty-ico">🔍</div><h3>No venues found</h3><p>Try a different location or sport</p><button onclick="clearSearch()" style="margin-top:16px;padding:11px 28px;background:var(--g);color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer">Clear Search</button></div>`;
+    return;
+  }
+  grid.innerHTML = sorted.map(v=>cardHTML(v)).join('');
+}
+function homeFilterSport(s,el){
+  document.querySelectorAll('.fpill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  let res=[...TURFS];
+  const loc=(document.getElementById('h-loc')?.value||'').toLowerCase();
+  if(loc)res=res.filter(v=>v.loc.toLowerCase().includes(loc)||v.area.toLowerCase().includes(loc));
+  if(s!=='All')res=res.filter(v=>v.sports.includes(s));
+  renderResults(res);
+}
+function clearSearch(){
+  document.getElementById('search-results').style.display='none';
+  document.getElementById('featured-sec').style.display='';
+}
+function quickSport(sp){
+  if(document.getElementById('h-sport')) document.getElementById('h-sport').value=sp;
+  doSearch();
+}
+
+// ══════════════════════
+// VENUES PAGE
+// ══════════════════════
+let venuesInited = false;
+function initVenues() {
+  if(!venuesInited) {
+    const sf=document.getElementById('sb-sports');
+    ['Football','Cricket','Badminton','Tennis','Basketball','Pickleball'].forEach(s=>{
+      sf.innerHTML+=`<label class="sb-check"><input type="checkbox" value="${s}" class="sp-chk" onchange="renderVenues()" style="accent-color:var(--g)"><label style="font-size:14px;color:var(--text)">${s}</label></label>`;
+    });
+    const af=document.getElementById('sb-areas');
+    [...new Set(TURFS.map(v=>v.area))].slice(0,10).forEach(a=>{
+      af.innerHTML+=`<label class="sb-check"><input type="checkbox" value="${a}" class="ar-chk" onchange="renderVenues()" style="accent-color:var(--g)"><label style="font-size:14px;color:var(--text)">${a}</label></label>`;
+    });
+    document.getElementById('venues-footer').innerHTML = getFooter();
+    venuesInited = true;
+  }
+  renderVenues();
+}
+function renderVenues() {
+  const grid = document.getElementById('venues-grid');
+  if(!grid) return;
+  const q = (document.getElementById('v-search')?.value||'').toLowerCase();
+  const spC = [...document.querySelectorAll('.sp-chk:checked')].map(c=>c.value);
+  const arC = [...document.querySelectorAll('.ar-chk:checked')].map(c=>c.value);
+  const pMin = parseFloat(document.getElementById('vp-min')?.value)||0;
+  const pMax = parseFloat(document.getElementById('vp-max')?.value)||Infinity;
+  const rMin = parseFloat(document.getElementById('v-rat')?.value)||0;
+  const sort = document.getElementById('v-sort')?.value||'rel';
+  let vens = TURFS.filter(v=>{
+    if(q&&!v.name.toLowerCase().includes(q)&&!v.loc.toLowerCase().includes(q)&&!v.sports.some(s=>s.toLowerCase().includes(q)))return false;
+    if(spC.length&&!spC.some(s=>v.sports.includes(s)))return false;
+    if(arC.length&&!arC.some(a=>v.area.includes(a)))return false;
+    if(v.price<pMin||v.price>pMax)return false;
+    if(v.rating<rMin)return false;
+    return true;
+  });
+  vens = sortV(vens,sort);
+  const cnt=document.getElementById('v-count');
+  if(cnt)cnt.innerHTML=`Showing <strong>${vens.length}</strong> of <strong>${TURFS.length}</strong> venues`;
+  grid.innerHTML=skels(Math.min(vens.length||2,4));
+  setTimeout(()=>{
+    if(!vens.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="empty-ico">🔍</div><h3>No venues match</h3><p>Try adjusting filters</p><button onclick="clearVF()" style="margin-top:16px;padding:11px 24px;background:var(--g);color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer">Clear Filters</button></div>`;return;}
+    grid.innerHTML=vens.map(v=>cardHTML(v)).join('');
+  },380);
+}
+function clearVF(){
+  document.querySelectorAll('.sp-chk,.ar-chk').forEach(c=>c.checked=false);
+  ['vp-min','vp-max','v-search'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('v-rat').value='0';
+  renderVenues();
+}
+
+// ══════════════════════
+// DETAIL PAGE
+// ══════════════════════
+function initDetail(id) {
+  CUR_VENUE = TURFS.find(v=>v.id===id)||TURFS[0];
+  SEL_SLOTS = [];
+  sliderIdx = 0;
+  const v = CUR_VENUE;
+  document.title = `${v.name} — Divyam Turfs`;
+
+  // Build reviews HTML
+  const revItems = v.reviews_data.map((r,i)=>`
+    <div class="rev-item">
+      <div class="rev-top">
+        <div class="rev-user">
+          <div class="rev-av" style="background:${r.col}">${r.av}</div>
+          <div><div class="rev-name">${r.nm}</div><div class="rev-date">${r.dt}</div></div>
+        </div>
+        <div class="rev-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      </div>
+      <div class="rev-comment">${r.txt}</div>
+    </div>`).join('');
+
+  // Unique gallery slides
+  const gallerySlides = v.gallery.map(img=>`<div class="dp-slide"><img src="${img}" alt="${v.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700&q=80'"></div>`).join('');
+  const thumbs = v.gallery.slice(0,3).map((img,i)=>`<div class="dp-thumb ${i===0?'on':''}" onclick="goSlide(${i})" id="dth${i}"><img src="${img}" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=700&q=80'"></div>`).join('');
+  const dots = v.gallery.map((_,i)=>`<button class="dp-dot ${i===0?'on':''}" id="ddot${i}" onclick="goSlide(${i})"></button>`).join('');
+
+  const content = document.getElementById('dp-content');
+  content.innerHTML = `
+    <div class="dp-gal-wrap">
+      <div class="dp-gal-in">
+        <div class="dp-slider" id="dp-slider">
+          <div class="dp-slides" id="dp-slides">${gallerySlides}</div>
+          <button class="dp-arr dp-arr-l" onclick="prevSlide()">‹</button>
+          <button class="dp-arr dp-arr-r" onclick="nextSlide()">›</button>
+          <div class="dp-dots">${dots}</div>
+        </div>
+        <div class="dp-thumbs">${thumbs}</div>
+      </div>
+    </div>
+    <div class="dp-body">
+      <div>
+        <div class="dp-bc">
+          <span class="lk" onclick="goHome()">Home</span><span class="sep">/</span>
+          <span class="lk" onclick="goVenues()">Venues</span><span class="sep">/</span>
+          <span class="lk" onclick="goVenues()">${v.area}</span><span class="sep">/</span>
+          <span>${v.name}</span>
+        </div>
+        <h1 class="dp-nm">${v.name}</h1>
+        <div class="dp-meta">
+          <div class="dp-rat-b"><span style="color:var(--yellow);font-size:14px">${starsHTML(v.rating)}</span><span class="sc">${v.rating}</span><span class="rv">(${v.reviews} reviews)</span></div>
+          <div class="dp-addr">📍 ${v.addr}</div>
+        </div>
+        <div class="dp-tags">${v.sports.map(s=>`<span class="dp-tag">${s}</span>`).join('')}</div>
+        <div class="dp-sec">
+          <div class="dp-st">📋 About This Venue</div>
+          <p class="dp-about">${v.about}</p>
+        </div>
+        <div class="dp-sec">
+          <div class="dp-st">✅ Amenities</div>
+          <div class="dp-am-grid">${v.amenities.map(a=>`<div class="dp-am"><span class="dp-am-ico">${AM_ICO[a]||'✓'}</span>${a}</div>`).join('')}</div>
+        </div>
+        <div class="dp-sec">
+          <div class="dp-st">📌 Rules</div>
+          <div class="dp-rules">${v.rules.map(r=>`<div class="dp-rule"><div class="rule-dot"></div>${r.trim()}</div>`).join('')}</div>
+        </div>
+        <div class="dp-sec">
+          <div class="dp-st">📍 Location</div>
+          <div style="background:var(--g4);border:1px solid var(--g3);border-radius:14px;padding:20px">
+            <div style="background:#dcfce7;height:160px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;font-size:16px;color:var(--g2)">
+              <span style="font-size:32px">📍</span>
+              <span style="font-weight:700">${v.addr}</span>
+              <button onclick="toast('Google Maps coming soon!')" style="background:var(--g);color:#fff;padding:8px 18px;border-radius:7px;font-size:12px;font-weight:700;border:none;cursor:pointer;margin-top:4px">Open in Maps</button>
+            </div>
+          </div>
+        </div>
+        <!-- REVIEWS ACCORDION -->
+        <div class="dp-sec reviews-accordion" id="rev-acc-${v.id}">
+          <div class="rev-header" onclick="toggleReviews(${v.id})">
+            <div class="rev-title">⭐ Reviews & Ratings <span style="font-size:13px;font-weight:600;color:var(--t3);margin-left:8px">${v.reviews} reviews</span></div>
+            <button class="rev-toggle" id="rev-tog-${v.id}">▾</button>
+          </div>
+          <div class="rev-body" id="rev-body-${v.id}">
+            <div style="display:flex;align-items:center;gap:20px;margin-bottom:20px;padding:16px;background:var(--g4);border-radius:12px;border:1px solid var(--g3)">
+              <div style="text-align:center">
+                <div style="font-family:var(--disp);font-size:52px;font-weight:900;color:var(--g);line-height:1">${v.rating}</div>
+                <div style="color:var(--yellow);font-size:20px;margin:4px 0">${starsHTML(v.rating)}</div>
+                <div style="font-size:13px;color:var(--t2)">${v.reviews} reviews</div>
+              </div>
+              <div style="flex:1">
+                ${[5,4,3,2,1].map(n=>{const pct=n===5?62:n===4?24:n===3?9:n===2?3:2;return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;color:var(--t2);width:20px">${n}★</span><div style="flex:1;height:7px;background:#e5e7eb;border-radius:4px;overflow:hidden"><div style="width:${pct}%;height:100%;background:var(--yellow);border-radius:4px"></div></div><span style="font-size:12px;color:var(--t3);width:30px">${pct}%</span></div>`;}).join('')}
+              </div>
+            </div>
+            <div class="rev-list">${revItems}</div>
+            <div class="rev-write">
+              <h4>✍️ Write a Review</h4>
+              <div class="rev-write-form">
+                <input type="text" placeholder="Your name" id="rw-nm-${v.id}">
+                <select id="rw-rat-${v.id}"><option value="5">★★★★★ 5 Stars</option><option value="4">★★★★☆ 4 Stars</option><option value="3">★★★☆☆ 3 Stars</option></select>
+                <textarea placeholder="Share your experience at this venue..." id="rw-txt-${v.id}"></textarea>
+                <button class="rev-submit" onclick="submitReview(${v.id})">Submit Review</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- BOOKING WIDGET -->
+      <div>
+        <div class="bw">
+          <div class="bw-top">
+            <h3>Book This Venue</h3>
+            <p>Select date & time slots</p>
+            <div class="bw-price">₹${v.price.toLocaleString()} <small>/ hour per slot</small></div>
+          </div>
+          <div class="bw-body">
+            <div class="bw-field">
+              <label class="bw-lbl">📅 Date</label>
+              <input type="date" class="bw-inp" id="bw-date" value="${new Date().toISOString().split('T')[0]}" min="${new Date().toISOString().split('T')[0]}">
+            </div>
+            <div class="bw-field">
+              <label class="bw-lbl">⏱️ Duration per slot</label>
+              <div class="dur-row">
+                <button class="dur-btn on" data-d="1" onclick="setDur(this)">1 hr</button>
+                <button class="dur-btn" data-d="1.5" onclick="setDur(this)">1.5 hr</button>
+                <button class="dur-btn" data-d="2" onclick="setDur(this)">2 hr</button>
+                <button class="dur-btn" data-d="3" onclick="setDur(this)">3 hr</button>
+              </div>
+            </div>
+            <div class="bw-field">
+              <label class="bw-lbl">🕐 Time Slots</label>
+              <div class="slots-leg">
+                <div class="s-leg"><div class="s-dot" style="background:#16a34a"></div>Available</div>
+                <div class="s-leg"><div class="s-dot" style="background:#dc2626"></div>Booked</div>
+                <div class="s-leg"><div class="s-dot" style="background:#0c0c0c"></div>Selected</div>
+              </div>
+              <div class="slots-g" id="slots-g">${slotsHTML(v)}</div>
+            </div>
+            <div class="ps">
+              <div class="ps-row"><span>Slots selected</span><span id="ps-sl">None</span></div>
+              <div class="ps-row"><span>Total duration</span><span id="ps-du">—</span></div>
+              <div class="ps-row"><span>Rate</span><span>₹${v.price.toLocaleString()}/hr</span></div>
+              <div class="ps-row"><span>Total</span><span id="ps-tot">₹0</span></div>
+            </div>
+            <button class="bw-book" onclick="doBook()">🏆 Book Now — Pay Securely</button>
+            <button class="bw-call" onclick="toast('📞 Venue: +91 83692 53612')">📞 Call Venue</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('detail-footer').innerHTML = getFooter();
+}
+
+// ── Gallery Slider ──
+function goSlide(i) {
+  const slides = document.getElementById('dp-slides');
+  if(!slides) return;
+  sliderIdx = i;
+  slides.style.transform = `translateX(-${i*100}%)`;
+  document.querySelectorAll('.dp-dot').forEach((d,j)=>d.classList.toggle('on',j===i));
+  document.querySelectorAll('[id^="dth"]').forEach((t,j)=>t.classList.toggle('on',j===i));
+}
+function nextSlide() {
+  if(!CUR_VENUE) return;
+  goSlide((sliderIdx+1)%CUR_VENUE.gallery.length);
+}
+function prevSlide() {
+  if(!CUR_VENUE) return;
+  goSlide((sliderIdx-1+CUR_VENUE.gallery.length)%CUR_VENUE.gallery.length);
+}
+
+// ── Reviews accordion ──
+function toggleReviews(id) {
+  const body = document.getElementById('rev-body-'+id);
+  const tog = document.getElementById('rev-tog-'+id);
+  const isOpen = body.classList.contains('show');
+  body.classList.toggle('show',!isOpen);
+  tog.classList.toggle('open',!isOpen);
+}
+
+function submitReview(id) {
+  const nm = document.getElementById('rw-nm-'+id)?.value.trim();
+  const rat = parseInt(document.getElementById('rw-rat-'+id)?.value||'5');
+  const txt = document.getElementById('rw-txt-'+id)?.value.trim();
+  if(!nm||!txt){toast('⚠️ Please fill in your name and review');return;}
+  const v = TURFS.find(v=>v.id===id);
+  if(!v) return;
+  v.reviews_data.unshift({nm,av:nm[0].toUpperCase(),col:'#059669',stars:rat,dt:'Just now',txt});
+  // Re-render reviews list
+  const body = document.getElementById('rev-body-'+id);
+  if(body) {
+    const list = body.querySelector('.rev-list');
+    if(list) list.innerHTML = v.reviews_data.map(r=>`
+      <div class="rev-item">
+        <div class="rev-top">
+          <div class="rev-user">
+            <div class="rev-av" style="background:${r.col}">${r.av}</div>
+            <div><div class="rev-name">${r.nm}</div><div class="rev-date">${r.dt}</div></div>
+          </div>
+          <div class="rev-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+        </div>
+        <div class="rev-comment">${r.txt}</div>
+      </div>`).join('');
+  }
+  // Clear form
+  const nmel=document.getElementById('rw-nm-'+id);if(nmel)nmel.value='';
+  const txel=document.getElementById('rw-txt-'+id);if(txel)txel.value='';
+  toast('✅ Review submitted! Thank you.');
+}
+
+// ── Booking ──
+function slotsHTML(v) {
+  return v.slots.map(s=>`<button class="s-btn ${s.avail?(SEL_SLOTS.includes(s.time)?'s-av sel':'s-av'):'s-bk'}" data-t="${s.time}" ${!s.avail?'disabled':''} onclick="${s.avail?'toggleSlot(this)':''}">
+    ${s.time}
+  </button>`).join('');
+}
+function toggleSlot(btn) {
+  const t=btn.dataset.t;
+  SEL_SLOTS.includes(t)?SEL_SLOTS=SEL_SLOTS.filter(x=>x!==t):SEL_SLOTS.push(t);
+  const g=document.getElementById('slots-g');if(g)g.innerHTML=slotsHTML(CUR_VENUE);
+  updPS();
+}
+function setDur(btn){
+  document.querySelectorAll('.dur-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');updPS();
+}
+function getDur(){return parseFloat(document.querySelector('.dur-btn.on')?.dataset.d||'1')}
+function updPS(){
+  if(!CUR_VENUE)return;
+  const dur=getDur(),n=SEL_SLOTS.length,tot=n*dur*CUR_VENUE.price;
+  const ps=document.getElementById('ps-sl'),pd=document.getElementById('ps-du'),pt=document.getElementById('ps-tot');
+  if(ps)ps.textContent=n>0?`${n} slot(s)`:'None';
+  if(pd)pd.textContent=n>0?`${(n*dur).toFixed(1)} hrs`:'—';
+  if(pt)pt.textContent=n>0?`₹${tot.toLocaleString()}`:'₹0';
+}
+function doBook(){
+  if(!SEL_SLOTS.length){toast('⚠️ Please select at least one time slot!');return;}
+  const date=document.getElementById('bw-date')?.value||new Date().toISOString().split('T')[0];
+  const dur=getDur(),n=SEL_SLOTS.length,tot=n*dur*CUR_VENUE.price;
+  localStorage.setItem('dtb',JSON.stringify({vid:CUR_VENUE.id,name:CUR_VENUE.name,loc:CUR_VENUE.loc,img:CUR_VENUE.img,sports:CUR_VENUE.sports,date,slots:SEL_SLOTS,dur:n*dur,tot}));
+  document.getElementById('pay-vn').textContent=CUR_VENUE.name;
+  document.getElementById('pay-vl').textContent=CUR_VENUE.loc;
+  document.getElementById('pay-img').src=CUR_VENUE.img;
+  document.getElementById('pay-dt').textContent=new Date(date+'T00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  document.getElementById('pay-sl2').textContent=SEL_SLOTS.join(', ');
+  document.getElementById('pay-dur').textContent=`${(n*dur).toFixed(1)} hrs`;
+  document.getElementById('pay-sub').textContent=`₹${tot.toLocaleString()}`;
+  document.getElementById('pay-tot').textContent=`₹${tot.toLocaleString()}`;
+  showPage('payment');
+}
+
+// ══════════════════════
+// PAYMENT
+// ══════════════════════
+function setPM(pm){
+  ['card','upi','nb','wal'].forEach(m=>{
+    document.getElementById('pm-'+m)?.classList.remove('on');
+    document.getElementById('pf-'+m).style.display='none';
+  });
+  document.getElementById('pm-'+pm)?.classList.add('on');
+  document.getElementById('pf-'+pm).style.display='block';
+}
+function fmtCard(inp){let v=inp.value.replace(/\D/g,'').slice(0,16);inp.value=v.match(/.{1,4}/g)?.join(' ')||v}
+function fmtExp(inp){let v=inp.value.replace(/\D/g,'');if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2,4);inp.value=v}
+function procPay(){
+  const nm=document.getElementById('pay-name')?.value||'';
+  if(!nm.trim()){toast('⚠️ Please enter your name');return;}
+  const btn=document.querySelector('.pay-now');
+  btn.innerHTML='⏳ Processing payment...';btn.disabled=true;
+  setTimeout(()=>{btn.innerHTML='✅ Payment successful!';setTimeout(()=>showPage('confirm'),700)},2000);
+}
+
+// ══════════════════════
+// CONFIRM
+// ══════════════════════
+function initConfirm(){
+  const raw=localStorage.getItem('dtb');if(!raw){goHome();return;}
+  const b=JSON.parse(raw);
+  const bid='DT-'+Date.now().toString().slice(-6);
+  document.getElementById('conf-bid').textContent=bid;
+  document.getElementById('cf-v').textContent=b.name;
+  document.getElementById('cf-l').textContent=b.loc;
+  document.getElementById('cf-d').textContent=new Date(b.date+'T00:00').toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('cf-s').textContent=b.slots.join(', ');
+  document.getElementById('cf-dur').textContent=`${b.dur} hour(s)`;
+  document.getElementById('cf-sp').textContent=b.sports?.join(', ')||'—';
+  document.getElementById('cf-amt').textContent=`₹${b.tot?.toLocaleString()}`;
+}
+function dlReceipt(){
+  const b=JSON.parse(localStorage.getItem('dtb')||'{}');
+  const id=document.getElementById('conf-bid')?.textContent||'DT-000000';
+  const txt=`DIVYAM TURFS BOOKING RECEIPT\n${'═'.repeat(38)}\nBooking ID : ${id}\nVenue      : ${b.name}\nLocation   : ${b.loc}\nDate       : ${b.date}\nSlots      : ${b.slots?.join(', ')}\nDuration   : ${b.dur} hour(s)\nSports     : ${b.sports?.join(', ')}\nTotal Paid : ₹${b.tot?.toLocaleString()}\n${'═'.repeat(38)}\nThank you for booking with Divyam Turfs!\nContact: +91 83692 53612\nsupport@divyamturfs.com`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain'}));a.download=`${id}.txt`;a.click();
+  toast('✅ Receipt downloaded!');
+}
+
+// ══════════════════════
+// AUTH
+// ══════════════════════
+function togglePw(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁️':'🔒'}
+function showErr(id,show){document.getElementById(id)?.classList.toggle('show',show);document.getElementById(id.replace('-e',''))?.classList.toggle('err',show)}
+function doLogin(){
+  const em=document.getElementById('l-em')?.value.trim()||'';
+  const pw=document.getElementById('l-pw')?.value||'';
+  let ok=true;
+  const eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);showErr('l-em-e',!eok);if(!eok)ok=false;
+  showErr('l-pw-e',pw.length<6);if(pw.length<6)ok=false;
+  if(!ok)return;
+  const btn=document.querySelector('#pg-login .auth-sub-btn');btn.textContent='Signing in...';btn.disabled=true;
+  setTimeout(()=>{CUR_USER={em,nm:em.split('@')[0]};updAuthNav();toast(`✅ Welcome back, ${CUR_USER.nm}!`);btn.textContent='Sign In';btn.disabled=false;goHome()},1200);
+}
+function doSignup(){
+  const nm=document.getElementById('s-nm')?.value.trim()||'';
+  const em=document.getElementById('s-em')?.value.trim()||'';
+  const ph=document.getElementById('s-ph')?.value.trim()||'';
+  const pw=document.getElementById('s-pw')?.value||'';
+  const tc=document.getElementById('s-terms')?.checked;
+  let ok=true;
+  showErr('s-nm-e',!nm);if(!nm)ok=false;
+  const eok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);showErr('s-em-e',!eok);if(!eok)ok=false;
+  showErr('s-ph-e',!/^\+?[\d\s\-]{10,}$/.test(ph));if(!/^\+?[\d\s\-]{10,}$/.test(ph))ok=false;
+  showErr('s-pw-e',pw.length<6);if(pw.length<6)ok=false;
+  if(!tc){toast('⚠️ Please accept the terms');return;}
+  if(!ok)return;
+  const btn=document.querySelector('#pg-signup .auth-sub-btn');btn.textContent='Creating account...';btn.disabled=true;
+  setTimeout(()=>{CUR_USER={em,nm};updAuthNav();toast(`🎉 Welcome, ${nm}!`);btn.textContent='Create Account';btn.disabled=false;goHome()},1400);
+}
+function updAuthNav(){
+  if(!CUR_USER)return;
+  document.getElementById('nav-r').innerHTML=`<span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7);padding:4px 8px">${CUR_USER.nm}</span><div class="nav-av" onclick="logout()" title="Logout">${CUR_USER.nm[0].toUpperCase()}</div>`;
+  document.getElementById('mob-btns').innerHTML=`<button class="btn-gd" onclick="logout()">Logout</button>`;
+}
+function logout(){CUR_USER=null;document.getElementById('nav-r').innerHTML=`<button class="btn-gw" onclick="showPage('login')">Login</button><button class="btn-gr" onclick="showPage('signup')">Sign Up Free</button>`;document.getElementById('mob-btns').innerHTML=`<button class="btn-gd" onclick="showPage('login');closeMob()">Login</button><button class="btn-gr" onclick="showPage('signup');closeMob()">Sign Up</button>`;toast('👋 Logged out');goHome();}
+
+// ══════════════════════
+// ABOUT
+// ══════════════════════
+let aboutInited=false;
+function initAbout(){if(!aboutInited){document.getElementById('about-footer').innerHTML=getFooter();aboutInited=true;}}
+
+// ══════════════════════
+// CONTACT
+// ══════════════════════
+let contactInited=false;
+function initContact(){
+  if(!contactInited){
+    // Build FAQ
+    const faqEl=document.getElementById('faq-list');
+    if(faqEl) faqEl.innerHTML=FAQS.map((f,i)=>`
+      <div class="faq-item">
+        <div class="faq-q" id="fq-${i}" onclick="toggleFaq(${i})">
+          ${f.q}
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a" id="fa-${i}">${f.a}</div>
+      </div>`).join('');
+    document.getElementById('contact-footer').innerHTML=getFooter();
+    contactInited=true;
+  }
+}
+function toggleFaq(i){
+  const q=document.getElementById('fq-'+i);
+  const a=document.getElementById('fa-'+i);
+  const isOpen=a.classList.contains('show');
+  document.querySelectorAll('.faq-a').forEach(el=>el.classList.remove('show'));
+  document.querySelectorAll('.faq-q').forEach(el=>el.classList.remove('open'));
+  if(!isOpen){a.classList.add('show');q.classList.add('open');}
+}
+function sendMsg(){
+  const nm=document.getElementById('cf-name')?.value.trim()||'';
+  const em=document.getElementById('cf-email')?.value.trim()||'';
+  const msg=document.getElementById('cf-msg')?.value.trim()||'';
+  if(!nm||!em||!msg){toast('⚠️ Please fill all required fields');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){toast('⚠️ Please enter a valid email');return;}
+  const btn=document.querySelector('.cf-submit');btn.innerHTML='⏳ Sending...';btn.disabled=true;
+  setTimeout(()=>{
+    btn.innerHTML='✅ Message Sent!';
+    toast('✅ Your message has been sent! We\'ll reply within 2 hours.');
+    ['cf-name','cf-email','cf-phone','cf-msg'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    setTimeout(()=>{btn.innerHTML='<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> Send Message';btn.disabled=false;},2500);
+  },1500);
+}
+
+// ══════════════════════
+// NAVBAR / SCROLL
+// ══════════════════════
+function toggleMob(){document.getElementById('mob').classList.toggle('open')}
+function closeMob(){document.getElementById('mob').classList.remove('open')}
+window.addEventListener('scroll',()=>{
+  document.getElementById('btt').classList.toggle('show',scrollY>400);
+  if(CUR_PAGE==='home'){
+    const n=document.getElementById('nav');
+    n.className = scrollY>80?'nav solid':'nav glass';
+  }
+});
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.mob-menu')&&!e.target.closest('#ham'))closeMob();
+});
+
+// ══════════════════════
+// INIT
+// ══════════════════════
+window.addEventListener('load',()=>{
+  document.getElementById('h-date').value=new Date().toISOString().split('T')[0];
+  initHome();
+  setTimeout(()=>{
+    const l=document.getElementById('loader');
+    l.style.opacity='0';setTimeout(()=>l.style.display='none',400);
+  },1100);
+});
+</script>
+</body>
+</html>
